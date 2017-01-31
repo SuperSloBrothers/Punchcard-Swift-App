@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (4.3.0)
+  - AlamofireObjectMapper (4.0.1):
+    - Alamofire (~> 4.1)
+    - ObjectMapper (~> 2.0)
+  - Dwifft (0.5)
+  - MCSwipeTableViewCell (2.1.4)
+  - ObjectMapper (2.2.2)
+  - ReSwift (3.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.3)
+  - AlamofireObjectMapper (~> 4.0)
+  - Dwifft
+  - MCSwipeTableViewCell (~> 2.1.4)
+  - ReSwift
+
+SPEC CHECKSUMS:
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
+  Dwifft: 9b7f1e55950e27b9dcdbb4d48502625cb4690b97
+  MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
+  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
+  ReSwift: f0255f4b4f2dacd12c5d97d34d13fc5dad6d6371
+
+PODFILE CHECKSUM: e972aa58c95b1eacfb270b80d8e79f5d176c5098
+
+COCOAPODS: 1.1.1
