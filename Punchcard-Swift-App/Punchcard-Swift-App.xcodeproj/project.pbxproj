@@ -13,6 +13,12 @@
 		CB13E59D1E4120F30020CB32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59B1E4120F30020CB32 /* Main.storyboard */; };
 		CB13E59F1E4120F30020CB32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59E1E4120F30020CB32 /* Assets.xcassets */; };
 		CB13E5A21E4120F30020CB32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E5A01E4120F30020CB32 /* LaunchScreen.storyboard */; };
+		CB30C5441E424FB400F179A3 /* PunchcardDataActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C5431E424FB400F179A3 /* PunchcardDataActions.swift */; };
+		CB30C5471E42500F00F179A3 /* RootStateReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C5461E42500F00F179A3 /* RootStateReducer.swift */; };
+		CB30C5491E4250F600F179A3 /* ApplicationSettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C5481E4250F600F179A3 /* ApplicationSettingsReducer.swift */; };
+		CB30C54B1E42513700F179A3 /* PunchcardDataReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54A1E42513700F179A3 /* PunchcardDataReducer.swift */; };
+		CB30C54D1E42518D00F179A3 /* ApplicationSettingsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54C1E42518D00F179A3 /* ApplicationSettingsActions.swift */; };
+		CB30C54F1E42524D00F179A3 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54E1E42524D00F179A3 /* Offer.swift */; };
 		CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */; };
 		CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */; };
 		CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */; };
@@ -31,6 +37,12 @@
 		CB13E59E1E4120F30020CB32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB13E5A11E4120F30020CB32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB13E5A31E4120F30020CB32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB30C5431E424FB400F179A3 /* PunchcardDataActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataActions.swift; sourceTree = "<group>"; };
+		CB30C5461E42500F00F179A3 /* RootStateReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootStateReducer.swift; sourceTree = "<group>"; };
+		CB30C5481E4250F600F179A3 /* ApplicationSettingsReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsReducer.swift; sourceTree = "<group>"; };
+		CB30C54A1E42513700F179A3 /* PunchcardDataReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataReducer.swift; sourceTree = "<group>"; };
+		CB30C54C1E42518D00F179A3 /* ApplicationSettingsActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsActions.swift; sourceTree = "<group>"; };
+		CB30C54E1E42524D00F179A3 /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
 		CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsState.swift; sourceTree = "<group>"; };
 		CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataState.swift; sourceTree = "<group>"; };
@@ -115,6 +127,25 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		CB30C5421E424F9A00F179A3 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				CB30C54C1E42518D00F179A3 /* ApplicationSettingsActions.swift */,
+				CB30C5431E424FB400F179A3 /* PunchcardDataActions.swift */,
+			);
+			name = Actions;
+			sourceTree = "<group>";
+		};
+		CB30C5451E424FF200F179A3 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				CB30C5461E42500F00F179A3 /* RootStateReducer.swift */,
+				CB30C5481E4250F600F179A3 /* ApplicationSettingsReducer.swift */,
+				CB30C54A1E42513700F179A3 /* PunchcardDataReducer.swift */,
+			);
+			name = Reducer;
+			sourceTree = "<group>";
+		};
 		CBBD4E1E1E4168D600E1DEB4 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,8 +160,11 @@
 			isa = PBXGroup;
 			children = (
 				CBBD4E231E4169BE00E1DEB4 /* Business.swift */,
+				CB30C54E1E42524D00F179A3 /* Offer.swift */,
 				CBBD4E261E416A0300E1DEB4 /* OfferInstance.swift */,
 				CBBD4E1E1E4168D600E1DEB4 /* State */,
+				CB30C5421E424F9A00F179A3 /* Actions */,
+				CB30C5451E424FF200F179A3 /* Reducer */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -259,10 +293,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB30C5441E424FB400F179A3 /* PunchcardDataActions.swift in Sources */,
 				CB13E59A1E4120F30020CB32 /* ViewController.swift in Sources */,
+				CB30C54F1E42524D00F179A3 /* Offer.swift in Sources */,
+				CB30C54D1E42518D00F179A3 /* ApplicationSettingsActions.swift in Sources */,
 				CBBD4E271E416A0300E1DEB4 /* OfferInstance.swift in Sources */,
+				CB30C5471E42500F00F179A3 /* RootStateReducer.swift in Sources */,
 				CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */,
 				CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */,
+				CB30C54B1E42513700F179A3 /* PunchcardDataReducer.swift in Sources */,
+				CB30C5491E4250F600F179A3 /* ApplicationSettingsReducer.swift in Sources */,
 				CBBD4E241E4169BE00E1DEB4 /* Business.swift in Sources */,
 				CB13E5981E4120F30020CB32 /* AppDelegate.swift in Sources */,
 				CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */,

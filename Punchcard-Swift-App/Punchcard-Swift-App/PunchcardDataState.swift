@@ -11,6 +11,7 @@ import ReSwift
 
 struct PunchcardDataState {
     var jwt: String?
+    var userId: Int
     var offerInstances: [OfferInstance]
     var nearbyBusinesses: [Business]
 }
