@@ -13,6 +13,11 @@
 		CB13E59D1E4120F30020CB32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59B1E4120F30020CB32 /* Main.storyboard */; };
 		CB13E59F1E4120F30020CB32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59E1E4120F30020CB32 /* Assets.xcassets */; };
 		CB13E5A21E4120F30020CB32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E5A01E4120F30020CB32 /* LaunchScreen.storyboard */; };
+		CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */; };
+		CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */; };
+		CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */; };
+		CBBD4E241E4169BE00E1DEB4 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E231E4169BE00E1DEB4 /* Business.swift */; };
+		CBBD4E271E416A0300E1DEB4 /* OfferInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E261E416A0300E1DEB4 /* OfferInstance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		CB13E59E1E4120F30020CB32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB13E5A11E4120F30020CB32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB13E5A31E4120F30020CB32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
+		CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsState.swift; sourceTree = "<group>"; };
+		CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataState.swift; sourceTree = "<group>"; };
+		CBBD4E231E4169BE00E1DEB4 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		CBBD4E261E416A0300E1DEB4 /* OfferInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferInstance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +90,7 @@
 			children = (
 				CB13E59B1E4120F30020CB32 /* Main.storyboard */,
 				CB13E5AA1E41210F0020CB32 /* View Controllers */,
+				CBBD4E251E4169C800E1DEB4 /* Model */,
 				CB13E5A91E4121080020CB32 /* Supporting Files */,
 			);
 			path = "Punchcard-Swift-App";
@@ -102,6 +113,26 @@
 				CB13E5991E4120F30020CB32 /* ViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		CBBD4E1E1E4168D600E1DEB4 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */,
+				CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */,
+				CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */,
+			);
+			name = State;
+			sourceTree = "<group>";
+		};
+		CBBD4E251E4169C800E1DEB4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBBD4E231E4169BE00E1DEB4 /* Business.swift */,
+				CBBD4E261E416A0300E1DEB4 /* OfferInstance.swift */,
+				CBBD4E1E1E4168D600E1DEB4 /* State */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,7 +260,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB13E59A1E4120F30020CB32 /* ViewController.swift in Sources */,
+				CBBD4E271E416A0300E1DEB4 /* OfferInstance.swift in Sources */,
+				CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */,
+				CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */,
+				CBBD4E241E4169BE00E1DEB4 /* Business.swift in Sources */,
 				CB13E5981E4120F30020CB32 /* AppDelegate.swift in Sources */,
+				CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
