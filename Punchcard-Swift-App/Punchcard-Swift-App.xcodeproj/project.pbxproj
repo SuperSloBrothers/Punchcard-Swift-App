@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6028527F66216771F656A9CC /* Pods_Punchcard_Swift_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36548DB781CEBD245ECF98EA /* Pods_Punchcard_Swift_App.framework */; };
 		CB13E5981E4120F30020CB32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13E5971E4120F30020CB32 /* AppDelegate.swift */; };
-		CB13E59A1E4120F30020CB32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13E5991E4120F30020CB32 /* ViewController.swift */; };
 		CB13E59D1E4120F30020CB32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59B1E4120F30020CB32 /* Main.storyboard */; };
 		CB13E59F1E4120F30020CB32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59E1E4120F30020CB32 /* Assets.xcassets */; };
 		CB13E5A21E4120F30020CB32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E5A01E4120F30020CB32 /* LaunchScreen.storyboard */; };
@@ -19,11 +18,17 @@
 		CB30C54B1E42513700F179A3 /* PunchcardDataReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54A1E42513700F179A3 /* PunchcardDataReducer.swift */; };
 		CB30C54D1E42518D00F179A3 /* ApplicationSettingsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54C1E42518D00F179A3 /* ApplicationSettingsActions.swift */; };
 		CB30C54F1E42524D00F179A3 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54E1E42524D00F179A3 /* Offer.swift */; };
+		CB60725F1E43F724004CC418 /* PunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60725E1E43F724004CC418 /* PunchViewController.swift */; };
 		CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */; };
 		CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */; };
 		CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */; };
 		CBBD4E241E4169BE00E1DEB4 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E231E4169BE00E1DEB4 /* Business.swift */; };
 		CBBD4E271E416A0300E1DEB4 /* OfferInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E261E416A0300E1DEB4 /* OfferInstance.swift */; };
+		CBD39AAA1E43EB54005021DD /* AllPlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD39AA91E43EB54005021DD /* AllPlacesTableViewController.swift */; };
+		CBD39AAD1E43EFF5005021DD /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD39AAC1E43EFF5005021DD /* PlaceDetailViewController.swift */; };
+		CBD39AAF1E43F183005021DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD39AAE1E43F183005021DD /* Constants.swift */; };
+		CBD39AB11E43F3DE005021DD /* MyPlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD39AB01E43F3DE005021DD /* MyPlacesTableViewController.swift */; };
+		CBD39AB41E43F5A0005021DD /* MyPlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD39AB31E43F5A0005021DD /* MyPlaceDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +37,6 @@
 		86284E8CC50CF27D732EE788 /* Pods-Punchcard-Swift-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punchcard-Swift-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Punchcard-Swift-App/Pods-Punchcard-Swift-App.release.xcconfig"; sourceTree = "<group>"; };
 		CB13E5941E4120F30020CB32 /* Punchcard-Swift-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Punchcard-Swift-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB13E5971E4120F30020CB32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CB13E5991E4120F30020CB32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CB13E59C1E4120F30020CB32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB13E59E1E4120F30020CB32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB13E5A11E4120F30020CB32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,11 +47,17 @@
 		CB30C54A1E42513700F179A3 /* PunchcardDataReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataReducer.swift; sourceTree = "<group>"; };
 		CB30C54C1E42518D00F179A3 /* ApplicationSettingsActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsActions.swift; sourceTree = "<group>"; };
 		CB30C54E1E42524D00F179A3 /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		CB60725E1E43F724004CC418 /* PunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchViewController.swift; sourceTree = "<group>"; };
 		CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
 		CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsState.swift; sourceTree = "<group>"; };
 		CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataState.swift; sourceTree = "<group>"; };
 		CBBD4E231E4169BE00E1DEB4 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		CBBD4E261E416A0300E1DEB4 /* OfferInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferInstance.swift; sourceTree = "<group>"; };
+		CBD39AA91E43EB54005021DD /* AllPlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPlacesTableViewController.swift; sourceTree = "<group>"; };
+		CBD39AAC1E43EFF5005021DD /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
+		CBD39AAE1E43F183005021DD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CBD39AB01E43F3DE005021DD /* MyPlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlacesTableViewController.swift; sourceTree = "<group>"; };
+		CBD39AB31E43F5A0005021DD /* MyPlaceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlaceDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				CB13E59B1E4120F30020CB32 /* Main.storyboard */,
+				CBD39AAE1E43F183005021DD /* Constants.swift */,
 				CB13E5AA1E41210F0020CB32 /* View Controllers */,
 				CBBD4E251E4169C800E1DEB4 /* Model */,
 				CB13E5A91E4121080020CB32 /* Supporting Files */,
@@ -122,7 +133,9 @@
 		CB13E5AA1E41210F0020CB32 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CB13E5991E4120F30020CB32 /* ViewController.swift */,
+				CBD39AAB1E43EFDD005021DD /* All Places Tab */,
+				CB6072601E43F72F004CC418 /* Punch Tab */,
+				CBD39AB21E43F3E1005021DD /* My Places Tab */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -146,6 +159,14 @@
 			name = Reducer;
 			sourceTree = "<group>";
 		};
+		CB6072601E43F72F004CC418 /* Punch Tab */ = {
+			isa = PBXGroup;
+			children = (
+				CB60725E1E43F724004CC418 /* PunchViewController.swift */,
+			);
+			name = "Punch Tab";
+			sourceTree = "<group>";
+		};
 		CBBD4E1E1E4168D600E1DEB4 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +188,24 @@
 				CB30C5451E424FF200F179A3 /* Reducer */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		CBD39AAB1E43EFDD005021DD /* All Places Tab */ = {
+			isa = PBXGroup;
+			children = (
+				CBD39AA91E43EB54005021DD /* AllPlacesTableViewController.swift */,
+				CBD39AAC1E43EFF5005021DD /* PlaceDetailViewController.swift */,
+			);
+			name = "All Places Tab";
+			sourceTree = "<group>";
+		};
+		CBD39AB21E43F3E1005021DD /* My Places Tab */ = {
+			isa = PBXGroup;
+			children = (
+				CBD39AB01E43F3DE005021DD /* MyPlacesTableViewController.swift */,
+				CBD39AB31E43F5A0005021DD /* MyPlaceDetailViewController.swift */,
+			);
+			name = "My Places Tab";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,16 +333,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB30C5441E424FB400F179A3 /* PunchcardDataActions.swift in Sources */,
-				CB13E59A1E4120F30020CB32 /* ViewController.swift in Sources */,
+				CBD39AAA1E43EB54005021DD /* AllPlacesTableViewController.swift in Sources */,
 				CB30C54F1E42524D00F179A3 /* Offer.swift in Sources */,
+				CBD39AB11E43F3DE005021DD /* MyPlacesTableViewController.swift in Sources */,
 				CB30C54D1E42518D00F179A3 /* ApplicationSettingsActions.swift in Sources */,
 				CBBD4E271E416A0300E1DEB4 /* OfferInstance.swift in Sources */,
+				CBD39AAF1E43F183005021DD /* Constants.swift in Sources */,
 				CB30C5471E42500F00F179A3 /* RootStateReducer.swift in Sources */,
 				CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */,
 				CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */,
 				CB30C54B1E42513700F179A3 /* PunchcardDataReducer.swift in Sources */,
+				CBD39AAD1E43EFF5005021DD /* PlaceDetailViewController.swift in Sources */,
 				CB30C5491E4250F600F179A3 /* ApplicationSettingsReducer.swift in Sources */,
 				CBBD4E241E4169BE00E1DEB4 /* Business.swift in Sources */,
+				CBD39AB41E43F5A0005021DD /* MyPlaceDetailViewController.swift in Sources */,
+				CB60725F1E43F724004CC418 /* PunchViewController.swift in Sources */,
 				CB13E5981E4120F30020CB32 /* AppDelegate.swift in Sources */,
 				CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */,
 			);

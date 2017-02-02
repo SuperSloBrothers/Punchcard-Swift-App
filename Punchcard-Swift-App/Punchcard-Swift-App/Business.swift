@@ -26,6 +26,8 @@ struct Business: Mappable {
     var updatedOn: String!
     var offerSet = [Offer]()
     
+    // Init for testing purposes.
+    init() { }
     
     init?(map: Map) { }
     
