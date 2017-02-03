@@ -28,9 +28,16 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
         var aBusiness = Business()
         aBusiness.name = "Tyrone's Pizza Shack"
         aBusiness.address = "69 Street"
+        aBusiness.offerSet = [
+            Offer(withDescription: "Buy 69 pizzas and get kicked out of the store"),
+            Offer(withDescription: "Buy one pizza, get ten free")
+        ]
         var anotherBusiness = Business()
         anotherBusiness.name = "Krusty Krab"
         anotherBusiness.address = "Bikini Bottom"
+        anotherBusiness.offerSet = [
+            Offer(withDescription: "Buy ten krabby patties, get one free")
+        ]
         testPlaces = [aBusiness, anotherBusiness]
         
     }

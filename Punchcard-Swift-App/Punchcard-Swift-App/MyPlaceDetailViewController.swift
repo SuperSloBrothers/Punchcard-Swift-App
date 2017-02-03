@@ -28,5 +28,4 @@ class MyPlaceDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-
 }
