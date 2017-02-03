@@ -13,4 +13,5 @@ target 'Punchcard-Swift-App' do
   pod 'AlamofireObjectMapper', '~> 4.0'
   pod 'Dwifft'
   pod 'MCSwipeTableViewCell', '~> 2.1.4'
+  pod 'SwiftyUserDefaults'
 end
