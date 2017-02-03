@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A39B9E11E453521001BFA91 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39B9E01E453521001BFA91 /* Defaults.swift */; };
 		6028527F66216771F656A9CC /* Pods_Punchcard_Swift_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36548DB781CEBD245ECF98EA /* Pods_Punchcard_Swift_App.framework */; };
 		CB13E5981E4120F30020CB32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13E5971E4120F30020CB32 /* AppDelegate.swift */; };
 		CB13E59D1E4120F30020CB32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59B1E4120F30020CB32 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A39B9E01E453521001BFA91 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		36548DB781CEBD245ECF98EA /* Pods_Punchcard_Swift_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punchcard_Swift_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		828876845A0FC11993308CA9 /* Pods-Punchcard-Swift-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punchcard-Swift-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Punchcard-Swift-App/Pods-Punchcard-Swift-App.debug.xcconfig"; sourceTree = "<group>"; };
 		86284E8CC50CF27D732EE788 /* Pods-Punchcard-Swift-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punchcard-Swift-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Punchcard-Swift-App/Pods-Punchcard-Swift-App.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		CB13E5A91E4121080020CB32 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2A39B9E01E453521001BFA91 /* Defaults.swift */,
 				CB13E5971E4120F30020CB32 /* AppDelegate.swift */,
 				CB13E59E1E4120F30020CB32 /* Assets.xcassets */,
 				CB13E5A01E4120F30020CB32 /* LaunchScreen.storyboard */,
@@ -322,7 +325,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -342,6 +345,7 @@
 				CB30C5471E42500F00F179A3 /* RootStateReducer.swift in Sources */,
 				CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */,
 				CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */,
+				2A39B9E11E453521001BFA91 /* Defaults.swift in Sources */,
 				CB30C54B1E42513700F179A3 /* PunchcardDataReducer.swift in Sources */,
 				CBD39AAD1E43EFF5005021DD /* PlaceDetailViewController.swift in Sources */,
 				CB30C5491E4250F600F179A3 /* ApplicationSettingsReducer.swift in Sources */,
