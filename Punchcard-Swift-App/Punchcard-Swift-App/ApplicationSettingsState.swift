@@ -10,5 +10,5 @@ import Foundation
 import ReSwift
 
 struct ApplicationSettingsState {
-    
+    var userApiToken: String?
 }

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2A39B9E11E453521001BFA91 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39B9E01E453521001BFA91 /* Defaults.swift */; };
+		2A39B9E31E454441001BFA91 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A39B9E21E454441001BFA91 /* Login.storyboard */; };
+		2A39B9E51E454D84001BFA91 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39B9E41E454D84001BFA91 /* Result.swift */; };
+		2A39B9E71E455708001BFA91 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39B9E61E455708001BFA91 /* LoginViewController.swift */; };
+		2A39B9E91E455FA7001BFA91 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39B9E81E455FA7001BFA91 /* Token.swift */; };
 		6028527F66216771F656A9CC /* Pods_Punchcard_Swift_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36548DB781CEBD245ECF98EA /* Pods_Punchcard_Swift_App.framework */; };
 		CB13E5981E4120F30020CB32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13E5971E4120F30020CB32 /* AppDelegate.swift */; };
 		CB13E59D1E4120F30020CB32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59B1E4120F30020CB32 /* Main.storyboard */; };
@@ -34,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		2A39B9E01E453521001BFA91 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		2A39B9E21E454441001BFA91 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		2A39B9E41E454D84001BFA91 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		2A39B9E61E455708001BFA91 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2A39B9E81E455FA7001BFA91 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		36548DB781CEBD245ECF98EA /* Pods_Punchcard_Swift_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punchcard_Swift_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		828876845A0FC11993308CA9 /* Pods-Punchcard-Swift-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punchcard-Swift-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Punchcard-Swift-App/Pods-Punchcard-Swift-App.debug.xcconfig"; sourceTree = "<group>"; };
 		86284E8CC50CF27D732EE788 /* Pods-Punchcard-Swift-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punchcard-Swift-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Punchcard-Swift-App/Pods-Punchcard-Swift-App.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,8 +122,11 @@
 			children = (
 				CB13E59B1E4120F30020CB32 /* Main.storyboard */,
 				CBD39AAE1E43F183005021DD /* Constants.swift */,
-				CB13E5AA1E41210F0020CB32 /* View Controllers */,
-				CBBD4E251E4169C800E1DEB4 /* Model */,
+				CB13E5AA1E41210F0020CB32 /* Main Application */,
+				CBBD4E1E1E4168D600E1DEB4 /* State */,
+				CB30C5421E424F9A00F179A3 /* Actions */,
+				CB30C5451E424FF200F179A3 /* Reducer */,
+				CBBD4E251E4169C800E1DEB4 /* Models */,
 				CB13E5A91E4121080020CB32 /* Supporting Files */,
 			);
 			path = "Punchcard-Swift-App";
@@ -128,19 +139,21 @@
 				CB13E5971E4120F30020CB32 /* AppDelegate.swift */,
 				CB13E59E1E4120F30020CB32 /* Assets.xcassets */,
 				CB13E5A01E4120F30020CB32 /* LaunchScreen.storyboard */,
+				2A39B9E61E455708001BFA91 /* LoginViewController.swift */,
+				2A39B9E21E454441001BFA91 /* Login.storyboard */,
 				CB13E5A31E4120F30020CB32 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CB13E5AA1E41210F0020CB32 /* View Controllers */ = {
+		CB13E5AA1E41210F0020CB32 /* Main Application */ = {
 			isa = PBXGroup;
 			children = (
 				CBD39AAB1E43EFDD005021DD /* All Places Tab */,
 				CB6072601E43F72F004CC418 /* Punch Tab */,
 				CBD39AB21E43F3E1005021DD /* My Places Tab */,
 			);
-			name = "View Controllers";
+			name = "Main Application";
 			sourceTree = "<group>";
 		};
 		CB30C5421E424F9A00F179A3 /* Actions */ = {
@@ -180,17 +193,16 @@
 			name = State;
 			sourceTree = "<group>";
 		};
-		CBBD4E251E4169C800E1DEB4 /* Model */ = {
+		CBBD4E251E4169C800E1DEB4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				CBBD4E231E4169BE00E1DEB4 /* Business.swift */,
 				CB30C54E1E42524D00F179A3 /* Offer.swift */,
 				CBBD4E261E416A0300E1DEB4 /* OfferInstance.swift */,
-				CBBD4E1E1E4168D600E1DEB4 /* State */,
-				CB30C5421E424F9A00F179A3 /* Actions */,
-				CB30C5451E424FF200F179A3 /* Reducer */,
+				2A39B9E41E454D84001BFA91 /* Result.swift */,
+				2A39B9E81E455FA7001BFA91 /* Token.swift */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		CBD39AAB1E43EFDD005021DD /* All Places Tab */ = {
@@ -274,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A39B9E31E454441001BFA91 /* Login.storyboard in Resources */,
 				CB13E5A21E4120F30020CB32 /* LaunchScreen.storyboard in Resources */,
 				CB13E59F1E4120F30020CB32 /* Assets.xcassets in Resources */,
 				CB13E59D1E4120F30020CB32 /* Main.storyboard in Resources */,
@@ -335,12 +348,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A39B9E71E455708001BFA91 /* LoginViewController.swift in Sources */,
 				CB30C5441E424FB400F179A3 /* PunchcardDataActions.swift in Sources */,
 				CBD39AAA1E43EB54005021DD /* AllPlacesTableViewController.swift in Sources */,
 				CB30C54F1E42524D00F179A3 /* Offer.swift in Sources */,
 				CBD39AB11E43F3DE005021DD /* MyPlacesTableViewController.swift in Sources */,
 				CB30C54D1E42518D00F179A3 /* ApplicationSettingsActions.swift in Sources */,
 				CBBD4E271E416A0300E1DEB4 /* OfferInstance.swift in Sources */,
+				2A39B9E91E455FA7001BFA91 /* Token.swift in Sources */,
+				2A39B9E51E454D84001BFA91 /* Result.swift in Sources */,
 				CBD39AAF1E43F183005021DD /* Constants.swift in Sources */,
 				CB30C5471E42500F00F179A3 /* RootStateReducer.swift in Sources */,
 				CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */,

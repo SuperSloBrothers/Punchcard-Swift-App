@@ -9,7 +9,19 @@
 import UIKit
 import ReSwift
 
-let store = Store<RootState>(reducer: RootStateReducer(), state: nil)
+let store = Store<RootState>(
+    reducer: RootStateReducer(),
+    state: nil,
+    middleware: [loggingMiddleware]
+)
+let loggingMiddleware: Middleware = { dispatch, getState in
+    return { next in
+        return {action in
+            print("\n---\nACTION CALLED:\n\(action)\n---\n")
+            return next(action)
+        }
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if store.state.applicationSettings.userApiToken == nil {
+            // Send them to login screen
+            let storyboard = UIStoryboard(name: "Login", bundle: Bundle.main)
+            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC")
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+        } else {
+            // dispatch actions that will get data from database
+        }
+        
         return true
     }
 

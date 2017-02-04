@@ -8,4 +8,31 @@
 
 import Foundation
 import ReSwift
+import SwiftyUserDefaults
+import Alamofire
+import ObjectMapper
 
+struct ResetUserState: Action {}
+
+struct SetApiToken: Action {
+    let token: String!
+}
+
+func requestAPIToken (completion: @escaping (Bool) -> ()) {
+    
+    let alamoRequest = Alamofire.request("https://punchcard-app.herokuapp.com/api/users/auth")
+    alamoRequest.responseJSON { response in
+        guard let JSON = response.result.value else {
+            print("error with api token request")
+            completion(false)
+            return
+        }
+        if let token = Mapper<Token>().map(JSONObject: JSON) {
+            store.dispatch(SetApiToken(token: token.token))
+            print("woohoo we got the token!\ntoken:\(token.token)")
+            completion(true)
+        } else {
+            completion(false)
+        }
+    }
+}
