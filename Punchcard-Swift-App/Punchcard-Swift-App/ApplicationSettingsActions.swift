@@ -28,7 +28,10 @@ func requestAPIToken (completion: @escaping (Bool) -> ()) {
             return
         }
         if let token = Mapper<Token>().map(JSONObject: JSON) {
+            // we probably won't put the token in the state like this
+            // only have it this way so the state isn't completely empty for now :)
             store.dispatch(SetApiToken(token: token.token))
+            Defaults[.apiToken] = token.token
             print("woohoo we got the token!\ntoken:\(token.token)")
             completion(true)
         } else {

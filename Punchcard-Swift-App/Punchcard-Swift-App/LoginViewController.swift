@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class LoginViewController: UIViewController {
 
@@ -24,6 +25,7 @@ class LoginViewController: UIViewController {
     @IBAction func requestApiTokenButtonPressed(_ sender: Any) {
         requestAPIToken { (isSuccess) in
             if isSuccess {
+                store.dispatch(ResetUserState())
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 if let vc = storyboard.instantiateInitialViewController() {
                     self.present(vc, animated: true, completion: nil)
