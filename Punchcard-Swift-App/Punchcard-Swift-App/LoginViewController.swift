@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
     @IBAction func requestApiTokenButtonPressed(_ sender: Any) {
         requestAPIToken { (isSuccess) in
             if isSuccess {
-                let storyboard = UIStoryboard(name: "main", bundle: Bundle.main)
+                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 if let vc = storyboard.instantiateInitialViewController() {
                     self.present(vc, animated: true, completion: nil)
                 } else {
