@@ -132,6 +132,12 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // do something
+    }
+    
     
     // MARK: - Supporting functionality
     

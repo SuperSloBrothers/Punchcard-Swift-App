@@ -41,9 +41,12 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
-        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "My Places", style: .plain, target: nil, action: nil)
+        
+        tableView.backgroundColor = Colors.darkGrayBackground
+        tableView.separatorColor = Colors.gold
+        
+        segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         
         // Create some test places.
         var aBusiness = Business()
@@ -98,6 +101,7 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.place.rawValue, for: indexPath) as! MCSwipeTableViewCell
         let myPlace = myPlacesDataSource[indexPath.row]
+        cell.backgroundColor = Colors.darkGrayBackground
         cell.textLabel?.text = myPlace.name
         cell.textLabel?.textColor = UIColor.white
         cell.detailTextLabel?.text = myPlace.address

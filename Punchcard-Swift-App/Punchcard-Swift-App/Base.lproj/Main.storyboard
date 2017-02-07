@@ -41,13 +41,73 @@
                     <view key="view" contentMode="scaleToFill" id="hxn-EO-LhB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tap to punch asshole" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrX-XT-hNJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="433.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR code result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUa-3m-anv">
+                                <rect key="frame" x="130.5" y="441.5" width="114" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of place" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjK-V0-Dsu">
+                                <rect key="frame" x="132" y="470.5" width="111" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8ae-6J-wzG">
+                                <rect key="frame" x="122.5" y="499.5" width="130" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NCM-n7-FvW">
+                                <rect key="frame" x="65" y="604" width="244" height="2"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnJ-hm-H4f">
+                                <rect key="frame" x="153.5" y="575" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="UrX-XT-hNJ" secondAttribute="trailing" id="0lV-dI-TTi"/>
+                            <constraint firstItem="OjK-V0-Dsu" firstAttribute="centerX" secondItem="SUa-3m-anv" secondAttribute="centerX" id="4G1-Na-7Ru"/>
+                            <constraint firstItem="8ae-6J-wzG" firstAttribute="centerX" secondItem="OjK-V0-Dsu" secondAttribute="centerX" id="4lL-6p-gyv"/>
+                            <constraint firstItem="NCM-n7-FvW" firstAttribute="width" secondItem="hxn-EO-LhB" secondAttribute="width" multiplier="0.65" id="ALO-NN-m0k"/>
+                            <constraint firstItem="NCM-n7-FvW" firstAttribute="top" secondItem="PnJ-hm-H4f" secondAttribute="bottom" constant="8" symbolic="YES" id="C7a-K6-xr6"/>
+                            <constraint firstItem="SUa-3m-anv" firstAttribute="top" secondItem="UrX-XT-hNJ" secondAttribute="bottom" constant="8" symbolic="YES" id="EfA-xY-ynH"/>
+                            <constraint firstItem="NCM-n7-FvW" firstAttribute="centerX" secondItem="hxn-EO-LhB" secondAttribute="centerX" id="J8H-8U-1p7"/>
+                            <constraint firstItem="cDg-4J-EqQ" firstAttribute="top" secondItem="NCM-n7-FvW" secondAttribute="bottom" constant="12" id="S6y-r8-FhV"/>
+                            <constraint firstItem="UrX-XT-hNJ" firstAttribute="height" secondItem="hxn-EO-LhB" secondAttribute="height" multiplier="0.65" id="V1G-Uy-oqk"/>
+                            <constraint firstItem="UrX-XT-hNJ" firstAttribute="top" secondItem="hxn-EO-LhB" secondAttribute="top" id="W2v-Tt-Hr4"/>
+                            <constraint firstItem="OjK-V0-Dsu" firstAttribute="top" secondItem="SUa-3m-anv" secondAttribute="bottom" constant="8" symbolic="YES" id="WtM-ta-ng0"/>
+                            <constraint firstItem="SUa-3m-anv" firstAttribute="centerX" secondItem="hxn-EO-LhB" secondAttribute="centerX" id="ZG3-9C-47j"/>
+                            <constraint firstItem="UrX-XT-hNJ" firstAttribute="leading" secondItem="hxn-EO-LhB" secondAttribute="leading" id="o9b-Os-UO2"/>
+                            <constraint firstItem="8ae-6J-wzG" firstAttribute="top" secondItem="OjK-V0-Dsu" secondAttribute="bottom" constant="8" symbolic="YES" id="rrE-I7-8sf"/>
+                            <constraint firstItem="PnJ-hm-H4f" firstAttribute="centerX" secondItem="hxn-EO-LhB" secondAttribute="centerX" id="woS-eC-oBv"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Punch" id="WWt-Pi-Pzn"/>
+                    <connections>
+                        <outlet property="offerDescriptionLabel" destination="8ae-6J-wzG" id="q6B-Pc-nV7"/>
+                        <outlet property="placeNameLabel" destination="OjK-V0-Dsu" id="UnE-cl-D2q"/>
+                        <outlet property="progressLabel" destination="PnJ-hm-H4f" id="Cr7-88-6sv"/>
+                        <outlet property="progressView" destination="NCM-n7-FvW" id="hEZ-Dg-pYs"/>
+                        <outlet property="qrCodeResultLabel" destination="SUa-3m-anv" id="mBe-tf-z6t"/>
+                        <outlet property="tapToPunchLabel" destination="UrX-XT-hNJ" id="CPz-oM-rSr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBj-Ip-tlr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="502" y="64"/>
+            <point key="canvasLocation" x="501.60000000000002" y="63.418290854572717"/>
         </scene>
         <!--My Places Table View Controller-->
         <scene sceneID="cD1-iL-xfT">
