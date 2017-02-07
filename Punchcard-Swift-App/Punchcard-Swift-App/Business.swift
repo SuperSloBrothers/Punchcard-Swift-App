@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 import ObjectMapper
 
 struct Business: Mappable {
@@ -25,6 +26,13 @@ struct Business: Mappable {
     var createdOn: String!
     var updatedOn: String!
     var offerSet = [Offer]()
+    
+    var location: CLLocation {
+        return CLLocation(
+            latitude: CLLocationDegrees(floatLiteral: Double(latitude)!),
+            longitude: CLLocationDegrees(floatLiteral: Double(longitude)!)
+        )
+    }
     
     // Init for testing purposes.
     init() { }

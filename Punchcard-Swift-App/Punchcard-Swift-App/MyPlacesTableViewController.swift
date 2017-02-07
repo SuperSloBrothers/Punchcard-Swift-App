@@ -99,7 +99,9 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.place.rawValue, for: indexPath) as! MCSwipeTableViewCell
         let myPlace = myPlacesDataSource[indexPath.row]
         cell.textLabel?.text = myPlace.name
+        cell.textLabel?.textColor = UIColor.white
         cell.detailTextLabel?.text = myPlace.address
+        cell.detailTextLabel?.textColor = Colors.cyan
         return cell
     }
     

@@ -15,7 +15,7 @@ struct RootStateReducer: Reducer {
     
     func handleAction(action: Action, state: RootState?) -> RootState {
         switch action {
-        case _ as ResetUserState:
+        case is ResetUserState:
             return RootState(
                 applicationSettings: applicationSettingsReducer(action: action, state: nil),
                 punchcardData: punchcardDataReducer(action: action, state: nil)

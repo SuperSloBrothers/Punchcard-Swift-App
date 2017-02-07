@@ -22,8 +22,9 @@ struct Offer: Mappable {
     var updatedOn: String!
     
     // Init for testing purposes.
-    init(withDescription description: String) {
+    init(withDescription description: String, punchesRequired: Int) {
         self.description = description
+        self.totalPunchesRequired = punchesRequired
     }
     
     init?(map: Map) { }

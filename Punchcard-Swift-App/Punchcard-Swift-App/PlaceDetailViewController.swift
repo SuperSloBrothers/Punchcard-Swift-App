@@ -7,12 +7,39 @@
 //
 
 import UIKit
+import MapKit
 
-class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
     
     // MARK: - IB outlets
     
-    @IBOutlet weak var offersTableView: UITableView!
+    @IBOutlet weak var offersTableView: UITableView! {
+        didSet {
+            offersTableView.backgroundColor = Colors.lightGrayBackground
+            offersTableView.rowHeight = UITableViewAutomaticDimension
+            offersTableView.separatorInset = UIEdgeInsets.zero
+            offersTableView.estimatedRowHeight = Dimensions.cellRowMinimumHeight
+            offersTableView.separatorColor = UIColor.white
+        }
+    }
+    
+    @IBOutlet weak var placeNameLabel: UILabel! {
+        didSet {
+            placeNameLabel.backgroundColor = Colors.gold
+            placeNameLabel.numberOfLines = 1
+            placeNameLabel.textColor = UIColor.white
+            placeNameLabel.font = Fonts.placeName
+        }
+    }
+    
+    @IBOutlet weak var placeAddressLabel: UILabel! {
+        didSet {
+            placeAddressLabel.numberOfLines = 2
+            placeAddressLabel.textColor = Colors.cyan
+            placeAddressLabel.font = Fonts.placeAddress
+        }
+    }
+    @IBOutlet weak var mapView: MKMapView!
     
     
     // MARK: - Stored properties
@@ -25,12 +52,50 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        offersTableView.rowHeight = UITableViewAutomaticDimension
-        offersTableView.estimatedRowHeight = 44
+        view.backgroundColor = Colors.darkGrayBackground
+        
+        placeNameLabel.text = " \(place.name!)"
+        placeAddressLabel.text = " \(place.address!)\n \(place.city!), \(place.state!) \(place.zipcode!)"
+        
+        formatMap()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    // MARK: - Helper methods
+    
+    func formatMap() {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(
+            place.location.coordinate,
+            MapDimensions.initialRegionRadius,
+            MapDimensions.initialRegionRadius
+        )
+        mapView.setRegion(coordinateRegion, animated: false)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = place.location.coordinate
+        mapView.addAnnotation(annotation)
+    }
+    
+    func createAttributedString(forPunchTotal punchCount: Int) -> NSAttributedString {
+        let attributedPunchText = NSMutableAttributedString(
+            string: "\(punchCount)",
+            attributes: [
+                NSFontAttributeName: Fonts.punchCount,
+                NSForegroundColorAttributeName: UIColor.white
+            ]
+        )
+        attributedPunchText.append(NSAttributedString(
+            string: "\npunches",
+            attributes: [
+                NSFontAttributeName: Fonts.punches,
+                NSForegroundColorAttributeName: UIColor.white
+            ]
+        ))
+        return attributedPunchText
     }
     
     
@@ -41,10 +106,20 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.offer.rawValue, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.currentOffer.rawValue, for: indexPath) as! CurrentOfferTableViewCell
+        let offer = place.offerSet[indexPath.row]
         
-        cell.textLabel?.text = place.offerSet[indexPath.row].description!
-        cell.textLabel?.numberOfLines = 0
+        cell.backgroundColor = Colors.lightGrayBackground
+        
+        cell.punchCountLabel.attributedText = createAttributedString(forPunchTotal: offer.totalPunchesRequired)
+        cell.punchCountLabel.textAlignment = .center
+        cell.punchCountLabel.backgroundColor = Colors.gold
+        cell.punchCountLabel.numberOfLines = 0
+        
+        cell.descriptionLabel.text = offer.description!
+        cell.descriptionLabel.font = Fonts.offerDescription
+        cell.descriptionLabel.textColor = UIColor.white
+        cell.descriptionLabel.numberOfLines = 0
         
         return cell
     }
@@ -61,7 +136,23 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Supporting functionality
     
     enum Cells: String {
-        case offer
+        case currentOffer
+    }
+    
+    struct Dimensions {
+        static let cellRowMinimumHeight: CGFloat = 80
+    }
+    
+    struct Fonts {
+        static let placeName = UIFont.boldSystemFont(ofSize: 25.0)
+        static let placeAddress = UIFont.boldSystemFont(ofSize: 15.0)
+        static let offerDescription = UIFont.boldSystemFont(ofSize: 17.0)
+        static let punchCount = UIFont.boldSystemFont(ofSize: 17.0)
+        static let punches = UIFont.boldSystemFont(ofSize: 8.0)
+    }
+    
+    struct MapDimensions {
+        static let initialRegionRadius: CLLocationDistance = 1000
     }
     
 }

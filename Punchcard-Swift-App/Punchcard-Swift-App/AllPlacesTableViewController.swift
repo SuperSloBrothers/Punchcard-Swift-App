@@ -22,21 +22,35 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "All Places"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "All Places", style: .plain, target: nil, action: nil)
+        
+        tableView.backgroundColor = Colors.darkGrayBackground
+        tableView.separatorColor = Colors.gold
         
         // Create some test places.
         var aBusiness = Business()
         aBusiness.name = "Tyrone's Pizza Shack"
         aBusiness.address = "69 Street"
+        aBusiness.city = "Mountain View"
+        aBusiness.state = "CA"
+        aBusiness.zipcode = "94040"
+        aBusiness.latitude = "37.3861"
+        aBusiness.longitude = "-122.0839"
         aBusiness.offerSet = [
-            Offer(withDescription: "Buy 69 pizzas and get kicked out of the store"),
-            Offer(withDescription: "Buy one pizza, get ten free")
+            Offer(withDescription: "Buy 69 pizzas and get kicked out of the store", punchesRequired: 6),
+            Offer(withDescription: "Buy one pizza, get ten free", punchesRequired: 4)
         ]
         var anotherBusiness = Business()
         anotherBusiness.name = "Krusty Krab"
-        anotherBusiness.address = "Bikini Bottom"
+        anotherBusiness.address = "1234 Ocean Avenue"
+        anotherBusiness.city = "Bikini Bottom"
+        anotherBusiness.state = "TX"
+        anotherBusiness.zipcode = "69696"
+        anotherBusiness.latitude = "34.0522"
+        anotherBusiness.longitude = "-118.2437"
         anotherBusiness.offerSet = [
-            Offer(withDescription: "Buy ten krabby patties, get one free")
+            Offer(withDescription: "Buy ten krabby patties, get one free", punchesRequired: 10)
         ]
         testPlaces = [aBusiness, anotherBusiness]
         
@@ -73,8 +87,11 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.place.rawValue, for: indexPath) as! MCSwipeTableViewCell
         let business = testPlaces[indexPath.row]
+        cell.backgroundColor = Colors.darkGrayBackground
         cell.textLabel?.text = business.name
+        cell.textLabel?.textColor = UIColor.white
         cell.detailTextLabel?.text = business.address
+        cell.detailTextLabel?.textColor = Colors.cyan
         return cell
     }
     
@@ -86,7 +103,7 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.rowHeigh
+        return Dimensions.cellRowHeigh
     }
     
     
@@ -96,8 +113,8 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
         case place
     }
     
-    struct Constants {
-        static let rowHeigh: CGFloat = 60
+    struct Dimensions {
+        static let cellRowHeigh: CGFloat = 60
     }
     
 }

@@ -16,7 +16,7 @@ let store = Store<RootState>(
 )
 let loggingMiddleware: Middleware = { dispatch, getState in
     return { next in
-        return {action in
+        return { action in
             print("\n---\nACTION CALLED:\n\(action)\n---\n")
             return next(action)
         }
@@ -28,14 +28,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.barTintColor = Colors.cyan
+        navigationBarAppearance.tintColor = UIColor.white
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+        let tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.barTintColor = Colors.tabBarBackground
+        tabBarAppearance.tintColor = Colors.cyan
         
         if store.state.applicationSettings.userApiToken == nil {
             // Send them to login screen
             let storyboard = UIStoryboard(name: "Login", bundle: Bundle.main)
-            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC")
+            let vc = storyboard.instantiateViewController(withIdentifier: StoryboardIdentifiers.loginVC.rawValue)
             self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
         } else {

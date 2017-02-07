@@ -23,6 +23,7 @@
 		CB30C54B1E42513700F179A3 /* PunchcardDataReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54A1E42513700F179A3 /* PunchcardDataReducer.swift */; };
 		CB30C54D1E42518D00F179A3 /* ApplicationSettingsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54C1E42518D00F179A3 /* ApplicationSettingsActions.swift */; };
 		CB30C54F1E42524D00F179A3 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C54E1E42524D00F179A3 /* Offer.swift */; };
+		CB50041E1E493B62002536B3 /* CurrentOfferTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB50041D1E493B62002536B3 /* CurrentOfferTableViewCell.swift */; };
 		CB60725F1E43F724004CC418 /* PunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60725E1E43F724004CC418 /* PunchViewController.swift */; };
 		CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */; };
 		CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */; };
@@ -57,6 +58,7 @@
 		CB30C54A1E42513700F179A3 /* PunchcardDataReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataReducer.swift; sourceTree = "<group>"; };
 		CB30C54C1E42518D00F179A3 /* ApplicationSettingsActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsActions.swift; sourceTree = "<group>"; };
 		CB30C54E1E42524D00F179A3 /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		CB50041D1E493B62002536B3 /* CurrentOfferTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentOfferTableViewCell.swift; sourceTree = "<group>"; };
 		CB60725E1E43F724004CC418 /* PunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchViewController.swift; sourceTree = "<group>"; };
 		CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
 		CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsState.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				CBD39AA91E43EB54005021DD /* AllPlacesTableViewController.swift */,
 				CBD39AAC1E43EFF5005021DD /* PlaceDetailViewController.swift */,
+				CB50041D1E493B62002536B3 /* CurrentOfferTableViewCell.swift */,
 			);
 			name = "All Places Tab";
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				2A39B9E91E455FA7001BFA91 /* Token.swift in Sources */,
 				2A39B9E51E454D84001BFA91 /* Result.swift in Sources */,
 				CBD39AAF1E43F183005021DD /* Constants.swift in Sources */,
+				CB50041E1E493B62002536B3 /* CurrentOfferTableViewCell.swift in Sources */,
 				CB30C5471E42500F00F179A3 /* RootStateReducer.swift in Sources */,
 				CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */,
 				CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */,
