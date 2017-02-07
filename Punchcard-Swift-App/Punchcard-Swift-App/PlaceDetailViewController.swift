@@ -39,7 +39,12 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
             placeAddressLabel.font = Fonts.placeAddress
         }
     }
-    @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var mapView: MKMapView! {
+        didSet {
+            mapView.showsUserLocation = true
+        }
+    }
     
     
     // MARK: - Stored properties
