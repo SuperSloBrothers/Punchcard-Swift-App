@@ -9,8 +9,9 @@
 import UIKit
 import ReSwift
 import MCSwipeTableViewCell
+import DZNEmptyDataSet
 
-class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
+class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     
     // MARK: - Stored properties
     
@@ -27,8 +28,12 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
         
         tableView.backgroundColor = Colors.darkGrayBackground
         tableView.separatorColor = Colors.gold
+        tableView.emptyDataSetDelegate = self
+        tableView.emptyDataSetSource = self
+        // Removes cell separators when table view is empty.
+        tableView.tableFooterView = UIView()
         
-        // Create some test places.
+        // Create some test places - comment out this block to test empty data set.
         var aBusiness = Business()
         aBusiness.name = "Tyrone's Pizza Shack"
         aBusiness.address = "69 Street"
@@ -107,6 +112,28 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
     }
     
     
+    // MARK: - Empty data set data source
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(
+            string: Constants.noNearbyPlacesMessage,
+            attributes: [
+                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
+                NSForegroundColorAttributeName: UIColor.white
+            ]
+        )
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(
+            string: Constants.noNearbyPlacesDetailedMessage,
+            attributes: [
+                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
+                NSForegroundColorAttributeName: UIColor.white
+            ]
+        )
+    }
+    
     // MARK: - Supporting functionality
     
     enum Cells: String {
@@ -115,6 +142,11 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber {
     
     struct Dimensions {
         static let cellRowHeigh: CGFloat = 60
+    }
+    
+    struct Constants {
+        static let noNearbyPlacesMessage = "No places nearby."
+        static let noNearbyPlacesDetailedMessage = "Our app sucks and nobody near you uses it."
     }
     
 }

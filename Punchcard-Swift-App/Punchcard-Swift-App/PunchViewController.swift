@@ -90,11 +90,15 @@ class PunchViewController: UIViewController, StoreSubscriber {
         
         view.backgroundColor = Colors.lightGrayBackground
         
+        progressLabel.text = "\(testCurrentTotal)/\(testRequiredTotal)"
+        progressView.setProgress(testProgress, animated: false)
+        
         // would be cool to add a glowing animation to the label while it's waiting for your tap
         tapToPunchLabel.text = "Tap to Punch!"
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedToPunch))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapToPunchLabel.addGestureRecognizer(tapGestureRecognizer)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -14,4 +14,5 @@ target 'Punchcard-Swift-App' do
   pod 'Dwifft'
   pod 'MCSwipeTableViewCell', '~> 2.1.4'
   pod 'SwiftyUserDefaults'
+  pod 'DZNEmptyDataSet'
 end

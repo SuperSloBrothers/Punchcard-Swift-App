@@ -9,8 +9,9 @@
 import UIKit
 import ReSwift
 import MCSwipeTableViewCell
+import DZNEmptyDataSet
 
-class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
+class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     // MARK: - IB outlets
     
@@ -21,9 +22,7 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
     
     var myActivePlaces = [Business]()
     var myRedeemedPlaces = [Business]()
-    lazy var myPlacesDataSource: [Business] = {
-        return self.myActivePlaces
-    }()
+    var myPlacesDataSource = [Business]()
     var selectedSegmentIndex = 0 {
         didSet {
             if selectedSegmentIndex == 0 {
@@ -45,10 +44,14 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
         
         tableView.backgroundColor = Colors.darkGrayBackground
         tableView.separatorColor = Colors.gold
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        // Removes cell separators when table view is empty.
+        tableView.tableFooterView = UIView()
         
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         
-        // Create some test places.
+        // Create some test places - comment out this block to test empty data set.
         var aBusiness = Business()
         aBusiness.name = "Starbucks"
         aBusiness.address = "Seattle Street"
@@ -60,6 +63,9 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
         aRedeemedPlace.name = "Apple"
         aRedeemedPlace.address = "Sweat shop in Asia"
         myRedeemedPlaces = [aRedeemedPlace]
+        
+        myPlacesDataSource = myActivePlaces
+        tableView.reloadData()
         
     }
     
@@ -121,6 +127,53 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
     }
     
     
+    // MARK: - Empty data set data source
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        if selectedSegmentIndex == 0 {
+            // Active
+            return NSAttributedString(
+                string: Constants.noActivePlacesMessage,
+                attributes: [
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
+                    NSForegroundColorAttributeName: UIColor.white
+                ]
+            )
+        } else {
+            // Redeemed
+            return NSAttributedString(
+                string: Constants.noRedeemedPlacesMessage,
+                attributes: [
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
+                    NSForegroundColorAttributeName: UIColor.white
+                ]
+            )
+        }
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        if selectedSegmentIndex == 0 {
+            // Active
+            return NSAttributedString(
+                string: Constants.noActivePlacesDetailedMessage,
+                attributes: [
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
+                    NSForegroundColorAttributeName: UIColor.white
+                ]
+            )
+        } else {
+            // Redeemed
+            return NSAttributedString(
+                string: Constants.noRedeemedPlacesDetailedMessage,
+                attributes: [
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
+                    NSForegroundColorAttributeName: UIColor.white
+                ]
+            )
+        }
+    }
+    
+    
     // MARK: - Supporting functionality
     
     enum Cells: String {
@@ -129,6 +182,10 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber {
     
     struct Constants {
         static let rowHeigh: CGFloat = 60
+        static let noActivePlacesMessage = "No active offers."
+        static let noActivePlacesDetailedMessage = "Go use this app you asshole."
+        static let noRedeemedPlacesMessage = "No redeemed offers."
+        static let noRedeemedPlacesDetailedMessage = "Go redeem some shit."
     }
     
 }
