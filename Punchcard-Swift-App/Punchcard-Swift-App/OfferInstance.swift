@@ -25,6 +25,9 @@ struct OfferInstance: Mappable {
     var createdOn: String!
     var updatedOn: String!
     
+    // Init for testing purposes.
+    init() { }
+    
     init?(map: Map) { }
     
     mutating func mapping(map: Map) {

@@ -1,5 +1,5 @@
 //
-//  MyPlacesTableViewController.swift
+//  MyOfferInstancesTableViewController.swift
 //  Punchcard-Swift-App
 //
 //  Created by Gabriele Pregadio on 2/2/17.
@@ -11,7 +11,7 @@ import ReSwift
 import MCSwipeTableViewCell
 import DZNEmptyDataSet
 
-class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class MyOfferInstancesTableViewController: UITableViewController, StoreSubscriber, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     // MARK: - IB outlets
     
@@ -20,15 +20,15 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEm
     
     // MARK: - Stored properties
     
-    var myActivePlaces = [Business]()
-    var myRedeemedPlaces = [Business]()
-    var myPlacesDataSource = [Business]()
+    var myActiveOfferInstances = [OfferInstance]()
+    var myRedeemedOfferInstances = [OfferInstance]()
+    var myOffersDataSource = [OfferInstance]()
     var selectedSegmentIndex = 0 {
         didSet {
             if selectedSegmentIndex == 0 {
-                myPlacesDataSource = myActivePlaces
+                myOffersDataSource = myActiveOfferInstances
             } else {
-                myPlacesDataSource = myRedeemedPlaces
+                myOffersDataSource = myRedeemedOfferInstances
             }
             tableView.reloadData()
         }
@@ -51,20 +51,21 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEm
         
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         
-        // Create some test places - comment out this block to test empty data set.
+        // Create some test offer instances - comment out this block to test empty data set.
+        var anOfferInstance = OfferInstance()
         var aBusiness = Business()
-        aBusiness.name = "Starbucks"
-        aBusiness.address = "Seattle Street"
-        var anotherBusiness = Business()
-        anotherBusiness.name = "Doki Doki"
-        anotherBusiness.address = "1 Grand Ave."
-        myActivePlaces = [aBusiness, anotherBusiness]
-        var aRedeemedPlace = Business()
-        aRedeemedPlace.name = "Apple"
-        aRedeemedPlace.address = "Sweat shop in Asia"
-        myRedeemedPlaces = [aRedeemedPlace]
+        aBusiness.name = "Mike's Can"
+        aBusiness.address = "123 Poop St."
+        aBusiness.city = "Poop Land"
+        aBusiness.state = "TX"
+        aBusiness.zipcode = "80085"
+        anOfferInstance.business = aBusiness
+        anOfferInstance.hasBeenRedeemed = false
+        anOfferInstance.totalPunches = 3
+        anOfferInstance.totalPunchesRequired = 5
+        myActiveOfferInstances = [anOfferInstance]
         
-        myPlacesDataSource = myActivePlaces
+        myOffersDataSource = myActiveOfferInstances
         tableView.reloadData()
         
     }
@@ -101,24 +102,24 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEm
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myPlacesDataSource.count
+        return myOffersDataSource.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.place.rawValue, for: indexPath) as! MCSwipeTableViewCell
-        let myPlace = myPlacesDataSource[indexPath.row]
+        let myOfferInstance = myOffersDataSource[indexPath.row]
         cell.backgroundColor = Colors.darkGrayBackground
-        cell.textLabel?.text = myPlace.name
+        cell.textLabel?.text = myOfferInstance.business.name
         cell.textLabel?.textColor = UIColor.white
-        cell.detailTextLabel?.text = myPlace.address
+        cell.detailTextLabel?.text = myOfferInstance.business.address
         cell.detailTextLabel?.textColor = Colors.cyan
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = storyboard!.instantiateViewController(withIdentifier: StoryboardIdentifiers.myPlaceDetail.rawValue) as! MyPlaceDetailViewController
-        vc.myPlace = myPlacesDataSource[indexPath.row]
+        let vc = storyboard!.instantiateViewController(withIdentifier: StoryboardIdentifiers.myOfferInstancesDetail.rawValue) as! MyOfferInstancesDetailViewController
+        vc.myOfferInstance = myOffersDataSource[indexPath.row]
         navigationController!.pushViewController(vc, animated: true)
     }
     
@@ -133,7 +134,7 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEm
         if selectedSegmentIndex == 0 {
             // Active
             return NSAttributedString(
-                string: Constants.noActivePlacesMessage,
+                string: Constants.noActiveOfferInstancesMessage,
                 attributes: [
                     NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
                     NSForegroundColorAttributeName: UIColor.white
@@ -142,7 +143,7 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEm
         } else {
             // Redeemed
             return NSAttributedString(
-                string: Constants.noRedeemedPlacesMessage,
+                string: Constants.noRedeemedOfferInstancesMessage,
                 attributes: [
                     NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
                     NSForegroundColorAttributeName: UIColor.white
@@ -155,7 +156,7 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEm
         if selectedSegmentIndex == 0 {
             // Active
             return NSAttributedString(
-                string: Constants.noActivePlacesDetailedMessage,
+                string: Constants.noActiveOfferInstancesDetailedMessage,
                 attributes: [
                     NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
                     NSForegroundColorAttributeName: UIColor.white
@@ -164,7 +165,7 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEm
         } else {
             // Redeemed
             return NSAttributedString(
-                string: Constants.noRedeemedPlacesDetailedMessage,
+                string: Constants.noRedeemedOfferInstancesDetailedMessage,
                 attributes: [
                     NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
                     NSForegroundColorAttributeName: UIColor.white
@@ -182,10 +183,10 @@ class MyPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEm
     
     struct Constants {
         static let rowHeigh: CGFloat = 60
-        static let noActivePlacesMessage = "No active offers."
-        static let noActivePlacesDetailedMessage = "Go use this app you asshole."
-        static let noRedeemedPlacesMessage = "No redeemed offers."
-        static let noRedeemedPlacesDetailedMessage = "Go redeem some shit."
+        static let noActiveOfferInstancesMessage = "No active offers."
+        static let noActiveOfferInstancesDetailedMessage = "Go use this app you asshole."
+        static let noRedeemedOfferInstancesMessage = "No redeemed offers."
+        static let noRedeemedOfferInstancesDetailedMessage = "Go redeem some shit."
     }
     
 }

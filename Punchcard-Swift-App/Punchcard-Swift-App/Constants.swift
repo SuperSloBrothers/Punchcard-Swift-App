@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 enum StoryboardIdentifiers: String {
-    case allPlaces, placeDetail, punch, myPlaces, myPlaceDetail, loginVC
+    case allPlaces, placeDetail, punch, myOfferInstances, myOfferInstancesDetail, loginVC
 }
 
 struct Colors {
