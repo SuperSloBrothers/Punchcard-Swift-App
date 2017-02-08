@@ -18,6 +18,9 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
     
     var testPlaces = [Business]()
     private var locationManager: CLLocationManager!
+    private var authorizationStatus: CLAuthorizationStatus {
+        return CLLocationManager.authorizationStatus()
+    }
     
     // MARK: - View lifecycle
     
@@ -43,14 +46,6 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         store.subscribe(self)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if CLLocationManager.authorizationStatus() == .denied {
-//            presentRequestLocationServicesAlertController()
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,24 +96,68 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
     
     // MARK: - Empty data set data source
     
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return UIColor.white
+    }
+    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        if authorizationStatus == .denied {
+            return NSAttributedString(
+                string: Messages.locationServicesDisabled,
+                attributes: [
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
+                    NSForegroundColorAttributeName: UIColor.lightGray
+                ]
+            )
+        } else {
+            return NSAttributedString(
+                string: Messages.noNearbyPlaces,
+                attributes: [
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
+                    NSForegroundColorAttributeName: UIColor.lightGray
+                ]
+            )
+        }
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        if authorizationStatus == .denied {
+            return NSAttributedString(
+                string: Messages.locationServicesDisabledDetailed,
+                attributes: [
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 12.0),
+                    NSForegroundColorAttributeName: UIColor.lightGray
+                ]
+            )
+        } else {
+            return NSAttributedString(
+                string: Messages.noNearbyPlacesDetailed,
+                attributes: [
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 12.0),
+                    NSForegroundColorAttributeName: UIColor.lightGray
+                ]
+            )
+        }
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+        guard authorizationStatus == .denied else { return nil }
+        
         return NSAttributedString(
-            string: Constants.noNearbyPlacesMessage,
+            string: Messages.settingsButtonTitle,
             attributes: [
-                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
-                NSForegroundColorAttributeName: UIColor.white
+                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0),
+                NSForegroundColorAttributeName: state == .normal ? Colors.buttonNormal : Colors.buttonSelected
             ]
         )
     }
     
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(
-            string: Constants.noNearbyPlacesDetailedMessage,
-            attributes: [
-                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
-                NSForegroundColorAttributeName: UIColor.white
-            ]
-        )
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        guard authorizationStatus == .denied else { return }
+        guard button.titleLabel?.text == Messages.settingsButtonTitle else { return }
+        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else { return }
+        guard UIApplication.shared.canOpenURL(settingsUrl) else { return }
+        UIApplication.shared.open(settingsUrl)
     }
     
     
@@ -129,24 +168,22 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
         switch status {
         case .authorizedWhenInUse:
             locationManager.startMonitoringSignificantLocationChanges()
-            createTestPlaces()
+//            createTestPlaces()
             tableView.reloadData()
         case .denied:
             testPlaces.removeAll()
             tableView.reloadData()
-            presentRequestLocationServicesAlertController()
+//            presentRequestLocationServicesAlertController()
         default:
             break
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Location significantly changed.
         print("locationManager(_:didUpdateLocations:) called.")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Some shit went down.
         print("locationManager(_:didFailWithError:) called.")
     }
     
@@ -199,9 +236,12 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
         static let cellRowHeigh: CGFloat = 60
     }
     
-    struct Constants {
-        static let noNearbyPlacesMessage = "No places nearby."
-        static let noNearbyPlacesDetailedMessage = "Our app sucks and nobody near you uses it... Or you didn't allow us to know your location"
+    struct Messages {
+        static let noNearbyPlaces = "No places nearby."
+        static let noNearbyPlacesDetailed = "Our app sucks and nobody near you uses it."
+        static let locationServicesDisabled = "Location services are disabled."
+        static let locationServicesDisabledDetailed = "We need to know your location to show you nearby places with offers available."
+        static let settingsButtonTitle = "Go to Settings"
     }
     
 }
