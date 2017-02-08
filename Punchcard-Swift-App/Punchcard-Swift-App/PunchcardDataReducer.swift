@@ -9,7 +9,22 @@
 import Foundation
 import ReSwift
 
+func createInitialPunchcardDataState() -> PunchcardDataState {
+    return PunchcardDataState(
+        offerInstances: nil,
+        nearbyBusinesses: nil
+    )
+}
+
 func punchcardDataReducer(action: Action, state: PunchcardDataState?) -> PunchcardDataState {
-    // dummy implementation just to build
-    return state ?? PunchcardDataState(jwt: nil, userId: 1, offerInstances: [], nearbyBusinesses: [])
+    var state = state ?? createInitialPunchcardDataState()
+    
+    switch action {
+    case let action as SetBusinesses:
+        state.nearbyBusinesses = action.businesses
+    default:
+        break
+    }
+    
+    return state
 }

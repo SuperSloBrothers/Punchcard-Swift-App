@@ -11,7 +11,6 @@ import ReSwift
 
 struct SubmitPunch: Action {
     var userId: Int
-    // TODO: - is "id" field of api/punches connected to the QR code? if not, how to get/generate it?
     var qrCode: String
     var timestamp: String
     var offerId: Int

@@ -12,15 +12,17 @@ import ReSwift
 import MCSwipeTableViewCell
 import DZNEmptyDataSet
 
-class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, CLLocationManagerDelegate {
+class AllPlacesTableViewController: UITableViewController, StoreSubscriber, CLLocationManagerDelegate {
     
     // MARK: - Stored properties
     
-    var testPlaces = [Business]()
-    private var locationManager: CLLocationManager!
-    private var authorizationStatus: CLAuthorizationStatus {
+    var businesses = [Business]()
+    var locationManager: CLLocationManager!
+    var authorizationStatus: CLAuthorizationStatus {
         return CLLocationManager.authorizationStatus()
     }
+    var businessesAreLoading = false
+    var loadingError: Error?
     
     // MARK: - View lifecycle
     
@@ -61,19 +63,33 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
     // MARK: - Store subscriber
     
     func newState(state: RootState) {
-        
+        if let businessResult = state.punchcardData.nearbyBusinesses {
+            switch businessResult {
+            case .Success(let businesses):
+                businessesAreLoading = false
+                self.businesses = businesses
+                tableView.reloadData()
+            case .Failure(let error):
+                businessesAreLoading = false
+                loadingError = error
+                tableView.reloadEmptyDataSet()
+            case .Loading():
+                businessesAreLoading = true
+                tableView.reloadEmptyDataSet()
+            }
+        }
     }
     
     
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testPlaces.count
+        return businesses.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.place.rawValue, for: indexPath) as! MCSwipeTableViewCell
-        let business = testPlaces[indexPath.row]
+        let business = businesses[indexPath.row]
         cell.backgroundColor = Colors.darkGrayBackground
         cell.textLabel?.text = business.name
         cell.textLabel?.textColor = UIColor.white
@@ -85,7 +101,7 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = storyboard!.instantiateViewController(withIdentifier: StoryboardIdentifiers.placeDetail.rawValue) as! PlaceDetailViewController
-        vc.place = testPlaces[indexPath.row]
+        vc.place = businesses[indexPath.row]
         navigationController!.pushViewController(vc, animated: true)
     }
     
@@ -94,86 +110,16 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
     }
     
     
-    // MARK: - Empty data set data source
-    
-    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return UIColor.white
-    }
-    
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if authorizationStatus == .denied {
-            return NSAttributedString(
-                string: Messages.locationServicesDisabled,
-                attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
-                ]
-            )
-        } else {
-            return NSAttributedString(
-                string: Messages.noNearbyPlaces,
-                attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
-                ]
-            )
-        }
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if authorizationStatus == .denied {
-            return NSAttributedString(
-                string: Messages.locationServicesDisabledDetailed,
-                attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 12.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
-                ]
-            )
-        } else {
-            return NSAttributedString(
-                string: Messages.noNearbyPlacesDetailed,
-                attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 12.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
-                ]
-            )
-        }
-    }
-    
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
-        guard authorizationStatus == .denied else { return nil }
-        
-        return NSAttributedString(
-            string: Messages.settingsButtonTitle,
-            attributes: [
-                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0),
-                NSForegroundColorAttributeName: state == .normal ? Colors.buttonNormal : Colors.buttonSelected
-            ]
-        )
-    }
-    
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-        guard authorizationStatus == .denied else { return }
-        guard button.titleLabel?.text == Messages.settingsButtonTitle else { return }
-        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else { return }
-        guard UIApplication.shared.canOpenURL(settingsUrl) else { return }
-        UIApplication.shared.open(settingsUrl)
-    }
-    
-    
     // MARK: - CLLocationManager delegate
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("locationManager(_:didChangeAuthorization:) called.")
         switch status {
         case .authorizedWhenInUse:
             locationManager.startMonitoringSignificantLocationChanges()
-//            createTestPlaces()
-            tableView.reloadData()
+            store.dispatch(getBusinesses())
         case .denied:
-            testPlaces.removeAll()
+            businesses.removeAll()
             tableView.reloadData()
-//            presentRequestLocationServicesAlertController()
         default:
             break
         }
@@ -190,44 +136,6 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
     
     // MARK: - Supporting functionality
     
-    func createTestPlaces() {
-        var aBusiness = Business()
-        aBusiness.name = "Tyrone's Pizza Shack"
-        aBusiness.address = "69 Street"
-        aBusiness.city = "Mountain View"
-        aBusiness.state = "CA"
-        aBusiness.zipcode = "94040"
-        aBusiness.latitude = "37.3861"
-        aBusiness.longitude = "-122.0839"
-        aBusiness.offerSet = [
-            Offer(withDescription: "Buy 69 pizzas and get kicked out of the store", punchesRequired: 6),
-            Offer(withDescription: "Buy one pizza, get ten free", punchesRequired: 4)
-        ]
-        var anotherBusiness = Business()
-        anotherBusiness.name = "Krusty Krab"
-        anotherBusiness.address = "1234 Ocean Avenue"
-        anotherBusiness.city = "Bikini Bottom"
-        anotherBusiness.state = "TX"
-        anotherBusiness.zipcode = "69696"
-        anotherBusiness.latitude = "34.0522"
-        anotherBusiness.longitude = "-118.2437"
-        anotherBusiness.offerSet = [
-            Offer(withDescription: "Buy ten krabby patties, get one free", punchesRequired: 10)
-        ]
-        testPlaces = [aBusiness, anotherBusiness]
-    }
-    
-    func presentRequestLocationServicesAlertController() {
-        let ac = UIAlertController(title: "Location services disabled", message: "In order to look for nearby places using our app, you must re-enable location services.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        ac.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else { return }
-            guard UIApplication.shared.canOpenURL(settingsUrl) else { return }
-            UIApplication.shared.open(settingsUrl)
-        })
-        present(ac, animated: true)
-    }
-    
     enum Cells: String {
         case place
     }
@@ -237,6 +145,8 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, DZNE
     }
     
     struct Messages {
+        static let loadingBusinesses = "Loading nearby businesses..."
+        static let errorLoading = "Loading Error"
         static let noNearbyPlaces = "No places nearby."
         static let noNearbyPlacesDetailed = "Our app sucks and nobody near you uses it."
         static let locationServicesDisabled = "Location services are disabled."

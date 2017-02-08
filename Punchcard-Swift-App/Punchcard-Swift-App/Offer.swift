@@ -13,6 +13,7 @@ struct Offer: Mappable {
     
     var id: Int!
     var url: String!
+    var name: String!
     var description: String!
     var business: String!
     var totalPunchesRequired: Int!
@@ -32,6 +33,7 @@ struct Offer: Mappable {
     mutating func mapping(map: Map) {
         id                      <- map["id"]
         url                     <- map["url"]
+        name                    <- map["name"]
         description             <- map["description"]
         business                <- map["business"]
         totalPunchesRequired    <- map["punch_total_required"]

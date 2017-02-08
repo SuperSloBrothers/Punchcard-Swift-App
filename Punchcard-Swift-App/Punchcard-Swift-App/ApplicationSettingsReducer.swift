@@ -10,9 +10,17 @@ import Foundation
 import ReSwift
 import SwiftyUserDefaults
 
+func createInitialApplicationSettingsState() -> ApplicationSettingsState {
+    let state = ApplicationSettingsState(
+        userApiToken: Defaults[.apiToken]
+    )
+    
+    return state
+}
+
 func applicationSettingsReducer(action: Action, state: ApplicationSettingsState?) -> ApplicationSettingsState {
     // If no state has been provided, create default state
-    var state = state ?? initialState()
+    var state = state ?? createInitialApplicationSettingsState()
     
     switch action {
     case let action as SetApiToken:
@@ -20,14 +28,6 @@ func applicationSettingsReducer(action: Action, state: ApplicationSettingsState?
     default:
         break
     }
-    
-    return state
-}
-
-func initialState() -> ApplicationSettingsState {
-    let state = ApplicationSettingsState(
-        userApiToken: Defaults[.apiToken]
-    )
     
     return state
 }

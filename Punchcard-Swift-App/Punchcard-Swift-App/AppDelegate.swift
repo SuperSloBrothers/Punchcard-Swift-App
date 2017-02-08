@@ -14,6 +14,7 @@ let store = Store<RootState>(
     state: nil,
     middleware: [loggingMiddleware]
 )
+
 let loggingMiddleware: Middleware = { dispatch, getState in
     return { next in
         return { action in
