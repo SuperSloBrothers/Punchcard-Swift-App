@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if store.state.applicationSettings.userApiToken == nil {
             // Send them to login screen
             let storyboard = UIStoryboard(name: "Login", bundle: Bundle.main)
-            let vc = storyboard.instantiateViewController(withIdentifier: StoryboardIdentifiers.loginVC.rawValue)
+            let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
         } else {
