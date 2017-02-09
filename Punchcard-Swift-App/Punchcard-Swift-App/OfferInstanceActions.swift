@@ -27,6 +27,7 @@ func getOfferInstances(parameters: [String: AnyObject]? = nil) -> Store<RootStat
             }
             guard response.response?.statusCode == StatusCode.ok.rawValue else {
                 // Error
+                print(response.response?.statusCode)
                 let apiError = Mapper<APIError>().map(JSONObject: json)!
                 store.dispatch(SetOfferInstances(offerInstances: Result.Failure(apiError)))
                 return

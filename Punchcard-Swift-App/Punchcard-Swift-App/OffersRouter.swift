@@ -8,13 +8,14 @@
 
 import Foundation
 import Alamofire
+import SwiftyUserDefaults
 
 // This is needed for editing/posting your offers I guess. But to just display offers (GET), you can probably just get those
 // from your Business' nested field.
 enum OfferRouter: URLRequestConvertible {
     static let baseUrlString = "https://punchcard-app.herokuapp.com/api/"
     static let endpointString = "offers/"
-    static var oAuthToken: String?
+    static var oAuthToken = Defaults[.apiToken]
     
     case create([String: AnyObject])
     case read(String?, [String: AnyObject]?)

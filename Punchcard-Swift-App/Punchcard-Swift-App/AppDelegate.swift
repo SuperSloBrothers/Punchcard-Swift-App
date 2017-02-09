@@ -39,11 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarAppearance.barTintColor = Colors.tabBarBackground
         tabBarAppearance.tintColor = Colors.cyan
         
-        if let token = store.state.applicationSettings.userApiToken {
-            BusinessRouter.oAuthToken = token
-            OfferInstanceRouter.oAuthToken = token
-            PunchRouter.oAuthToken = token
-        } else {
+        if store.state.applicationSettings.userApiToken == nil {
             // Send them to login screen
             let storyboard = UIStoryboard(name: "Login", bundle: Bundle.main)
             let vc = storyboard.instantiateInitialViewController()

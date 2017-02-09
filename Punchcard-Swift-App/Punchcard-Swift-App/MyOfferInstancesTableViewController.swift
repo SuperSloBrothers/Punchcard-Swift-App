@@ -82,6 +82,7 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
                 // TODO: - Following two lines should be done via parameters in the request (I think).
                 myActiveOfferInstances = offerInstances.filter { $0.canBeRedeemed }
                 myRedeemedOfferInstances = offerInstances.filter { !$0.canBeRedeemed }
+                myOffersDataSource = (selectedSegmentIndex == 0) ? myActiveOfferInstances : myRedeemedOfferInstances
                 tableView.reloadData()
             case .Failure(let error):
                 offerInstancesAreLoading = false

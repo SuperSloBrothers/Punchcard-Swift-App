@@ -8,11 +8,12 @@
 
 import Foundation
 import Alamofire
+import SwiftyUserDefaults
 
 enum BusinessRouter: URLRequestConvertible {
     static let baseUrlString = "https://punchcard-app.herokuapp.com/api/"
     static let endpointString = "businesses/"
-    static var oAuthToken: String?
+    static var oAuthToken = Defaults[.apiToken]
     
     case create([String: AnyObject])
     case read(String?, [String: AnyObject]?)
