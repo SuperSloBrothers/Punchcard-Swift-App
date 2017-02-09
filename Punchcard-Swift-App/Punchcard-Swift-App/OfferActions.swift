@@ -15,6 +15,10 @@ struct CreateOffer: Action {
     let offerResult: Result<Offer>?
 }
 
+struct SetOffers: Action {
+    let offers: Result<[Offer]>?
+}
+
 func postOffer(parameters: [String: AnyObject]) -> Store<RootState>.ActionCreator {
     return { state, store in
         
@@ -40,5 +44,33 @@ func postOffer(parameters: [String: AnyObject]) -> Store<RootState>.ActionCreato
         }
         
         return CreateOffer(offerResult: Result.Loading())
+    }
+}
+
+func getOffers(parameters: [String: AnyObject]? = nil) -> Store<RootState>.ActionCreator {
+    return { state, store in
+        
+        Alamofire.request(OfferRouter.read(nil, parameters)).responseJSON { response in
+            guard let json = response.result.value else {
+                // Error
+                let apiError = APIError(status: response.response?.statusCode ?? 400, error: response.result.error?.localizedDescription ?? "Error")
+                store.dispatch(SetOffers(offers: Result.Failure(apiError)))
+                return
+            }
+            guard response.response?.statusCode == StatusCode.ok.rawValue else {
+                // Error
+                print(response.response?.statusCode)
+                let apiError = Mapper<APIError>().map(JSONObject: json)!
+                store.dispatch(SetOffers(offers: Result.Failure(apiError)))
+                return
+            }
+            if let offers = Mapper<Offer>().mapArray(JSONObject: json) {
+                store.dispatch(SetOffers(offers: Result.Success(offers)))
+            } else {
+                print("couldn't map offer instances from api result")
+            }
+        }
+        
+        return SetOffers(offers: Result.Loading())
     }
 }

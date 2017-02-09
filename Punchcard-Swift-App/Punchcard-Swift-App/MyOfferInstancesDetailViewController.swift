@@ -38,6 +38,8 @@ class MyOfferInstancesDetailViewController: UIViewController, StoreSubscriber {
         }
     }
     
+    @IBOutlet weak var progressImageView: UIImageView!
+    
     
     // MARK: - IB actions
     
@@ -63,7 +65,17 @@ class MyOfferInstancesDetailViewController: UIViewController, StoreSubscriber {
         
         placeNameLabel.text = " \(myOfferInstance.business.name!)"
         placeAddressLabel.text = " \(business.address!)\n \(business.city!), \(business.state!) \(business.zipcode!)"
-        offerDescriptionLabel.text = "This offerInstance's corresponding offer description would be displayed here..."
+        offerDescriptionLabel.text = myOfferInstance.name!
+        
+        // Dummy label just to test
+        progressImageView.isHidden = true
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        label.center = progressImageView.center
+        label.textAlignment = .center
+        label.text = "\(myOfferInstance.totalPunches!)/\(myOfferInstance.totalPunchesRequired!)"
+        label.textColor = UIColor.white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        view.addSubview(label)
     }
     
     override func viewWillAppear(_ animated: Bool) {

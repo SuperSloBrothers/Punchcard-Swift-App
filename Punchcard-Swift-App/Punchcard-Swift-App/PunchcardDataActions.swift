@@ -9,15 +9,9 @@
 import Foundation
 import ReSwift
 
-struct SubmitPunch: Action {
-    var userId: Int
-    var qrCode: String
-    var timestamp: String
-    var offerId: Int
-    var offerInstanceId: Int
-}
+// this file should not exist once all the following actions are in their respective files
 
-struct RedeemOffer: Action {
+struct RedeemOfferInstance: Action {
     var offerId: Int
     var offerInstanceId: Int
 }

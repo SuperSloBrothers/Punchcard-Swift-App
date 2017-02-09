@@ -152,7 +152,7 @@
                     <navigationItem key="navigationItem" id="TAK-QY-d4W">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ERG-s4-U5L">
-                            <rect key="frame" x="108" y="7" width="159" height="31"/>
+                            <rect key="frame" x="108" y="6.5" width="159" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Active"/>
@@ -304,6 +304,7 @@
                         <outlet property="offerDescriptionLabel" destination="0Zh-JR-wXy" id="gV3-03-irX"/>
                         <outlet property="placeAddressLabel" destination="uOg-7Y-af2" id="45f-hv-a1L"/>
                         <outlet property="placeNameLabel" destination="4eZ-2m-RHK" id="IL6-63-Beg"/>
+                        <outlet property="progressImageView" destination="KPZ-oe-nC7" id="G3N-oo-ceT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I22-nw-CVh" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -132,8 +132,8 @@
 			children = (
 				CB5B85A71E4BA25A007041A5 /* BusinessRouter.swift */,
 				CB0A13671E4BBF9F00F3B204 /* OfferInstanceRouter.swift */,
-				CB2A57941E4BCB4B003871B1 /* PunchRouter.swift */,
 				CB2936B21E4BE75D00DEBEA1 /* OffersRouter.swift */,
+				CB2A57941E4BCB4B003871B1 /* PunchRouter.swift */,
 			);
 			name = Routers;
 			sourceTree = "<group>";

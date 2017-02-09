@@ -12,7 +12,7 @@ import ObjectMapper
 struct APIError: Mappable, Error {
     var error: String!
     var status: Int!
-    // TODO: - Is `status` an Int or wat
+    // TODO: - Is `status` an Int or wat. It isn't mapping properly.
     
     init(status: Int, error: String) {
         self.error = error

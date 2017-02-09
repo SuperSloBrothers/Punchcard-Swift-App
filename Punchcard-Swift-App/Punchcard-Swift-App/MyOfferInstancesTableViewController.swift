@@ -58,6 +58,7 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        // TODO: - Find a better place to call this. It's getting called an unnecessary amount of times.
         store.dispatch(getOfferInstances())
     }
     
@@ -80,8 +81,8 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
                 offerInstancesAreLoading = false
                 loadingError = nil
                 // TODO: - Following two lines should be done via parameters in the request (I think).
-                myActiveOfferInstances = offerInstances.filter { $0.canBeRedeemed }
-                myRedeemedOfferInstances = offerInstances.filter { !$0.canBeRedeemed }
+                myRedeemedOfferInstances = offerInstances.filter { $0.redeemedDate != nil }
+                myActiveOfferInstances = offerInstances.filter { $0.redeemedDate == nil }
                 myOffersDataSource = (selectedSegmentIndex == 0) ? myActiveOfferInstances : myRedeemedOfferInstances
                 tableView.reloadData()
             case .Failure(let error):
