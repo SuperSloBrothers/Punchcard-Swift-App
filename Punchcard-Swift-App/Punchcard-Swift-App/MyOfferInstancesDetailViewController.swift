@@ -42,8 +42,10 @@ class MyOfferInstancesDetailViewController: UIViewController, StoreSubscriber {
     
     @IBOutlet weak var redeemButton: UIButton! {
         didSet {
-            redeemButton.backgroundColor = Colors.cyan
-            redeemButton.layer.cornerRadius = 10
+            redeemButton.isUserInteractionEnabled = false
+            redeemButton.backgroundColor = Colors.buttonDisabledBackground
+            redeemButton.layer.cornerRadius = 7
+            redeemButton.setTitleColor(Colors.buttonDisabledText, for: .normal)
         }
     }
     
@@ -51,7 +53,7 @@ class MyOfferInstancesDetailViewController: UIViewController, StoreSubscriber {
     // MARK: - IB actions
     
     @IBAction func redeemButtonTapped(_ sender: UIButton) {
-    
+        print("pressed redeem button")
     }
     
     
@@ -74,8 +76,11 @@ class MyOfferInstancesDetailViewController: UIViewController, StoreSubscriber {
         placeAddressLabel.text = " \(business.address!)\n \(business.city!), \(business.state!) \(business.zipcode!)"
         offerDescriptionLabel.text = myOfferInstance.name!
         
-        if !myOfferInstance.canBeRedeemed {
-            redeemButton.isUserInteractionEnabled = false
+        if myOfferInstance.canBeRedeemed! {
+            redeemButton.isUserInteractionEnabled = true
+            redeemButton.backgroundColor = Colors.progressComplete
+            redeemButton.setTitleColor(UIColor.white, for: .normal)
+            redeemButton.setTitleColor(UIColor.black, for: .highlighted)
         }
         
         // Dummy label just to test

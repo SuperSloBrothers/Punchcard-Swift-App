@@ -135,6 +135,11 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, CLLo
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("locationManager(_:didFailWithError:) called.")
+        if let clError = error as? CLError {
+            if clError.code == .denied {
+                manager.stopMonitoringSignificantLocationChanges()
+            }
+        }
     }
     
     

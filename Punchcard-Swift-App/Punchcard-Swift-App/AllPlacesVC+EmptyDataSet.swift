@@ -88,7 +88,7 @@ extension AllPlacesTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSet
             string: Messages.settingsButtonTitle,
             attributes: [
                 NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0),
-                NSForegroundColorAttributeName: state == .normal ? Colors.buttonNormal : Colors.buttonSelected
+                NSForegroundColorAttributeName: state == .normal ? Colors.buttonNormalBackground : Colors.buttonSelectedText
             ]
         )
     }
