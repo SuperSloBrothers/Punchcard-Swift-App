@@ -152,7 +152,7 @@
                     <navigationItem key="navigationItem" id="TAK-QY-d4W">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ERG-s4-U5L">
-                            <rect key="frame" x="108" y="6.5" width="159" height="31"/>
+                            <rect key="frame" x="108" y="7" width="159" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Active"/>
@@ -305,6 +305,7 @@
                         <outlet property="placeAddressLabel" destination="uOg-7Y-af2" id="45f-hv-a1L"/>
                         <outlet property="placeNameLabel" destination="4eZ-2m-RHK" id="IL6-63-Beg"/>
                         <outlet property="progressImageView" destination="KPZ-oe-nC7" id="G3N-oo-ceT"/>
+                        <outlet property="redeemButton" destination="UH7-0b-KAq" id="NQa-eu-n6K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I22-nw-CVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -409,6 +410,42 @@
                                         <connections>
                                             <outlet property="descriptionLabel" destination="XL9-Kz-PFJ" id="UpR-tT-6U8"/>
                                             <outlet property="punchCountLabel" destination="g04-cH-6PE" id="1gF-Hp-mGQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="matchingOffer" rowHeight="81" id="Df2-k8-CvN" customClass="MatchingOfferTableViewCell" customModule="Punchcard_Swift_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="109" width="375" height="81"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Df2-k8-CvN" id="6sR-oI-Wtp">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5af-JB-DtE">
+                                                    <rect key="frame" x="64" y="8" width="303" height="64.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lfw-U2-akT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="80.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="Jvf-0A-LR9"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="5af-JB-DtE" secondAttribute="bottom" id="82P-Dp-2BD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5af-JB-DtE" secondAttribute="trailing" id="Bb4-G0-ho0"/>
+                                                <constraint firstItem="lfw-U2-akT" firstAttribute="width" secondItem="6sR-oI-Wtp" secondAttribute="width" multiplier="0.15" id="cP1-jh-8xw"/>
+                                                <constraint firstAttribute="bottom" secondItem="lfw-U2-akT" secondAttribute="bottom" id="fxO-2l-gGB"/>
+                                                <constraint firstItem="5af-JB-DtE" firstAttribute="leading" secondItem="lfw-U2-akT" secondAttribute="trailing" constant="8" symbolic="YES" id="hvF-zo-vtO"/>
+                                                <constraint firstItem="lfw-U2-akT" firstAttribute="leading" secondItem="6sR-oI-Wtp" secondAttribute="leading" id="qf5-D4-2qK"/>
+                                                <constraint firstItem="5af-JB-DtE" firstAttribute="top" secondItem="6sR-oI-Wtp" secondAttribute="topMargin" id="r7X-5R-gmR"/>
+                                                <constraint firstItem="lfw-U2-akT" firstAttribute="top" secondItem="6sR-oI-Wtp" secondAttribute="top" id="tIo-xW-T1m"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="5af-JB-DtE" id="YLz-wW-2Qg"/>
+                                            <outlet property="progressImageView" destination="lfw-U2-akT" id="OC7-CD-lG2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

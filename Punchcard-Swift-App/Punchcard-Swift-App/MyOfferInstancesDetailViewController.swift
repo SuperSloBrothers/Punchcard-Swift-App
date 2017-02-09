@@ -40,6 +40,13 @@ class MyOfferInstancesDetailViewController: UIViewController, StoreSubscriber {
     
     @IBOutlet weak var progressImageView: UIImageView!
     
+    @IBOutlet weak var redeemButton: UIButton! {
+        didSet {
+            redeemButton.backgroundColor = Colors.cyan
+            redeemButton.layer.cornerRadius = 10
+        }
+    }
+    
     
     // MARK: - IB actions
     
@@ -66,6 +73,10 @@ class MyOfferInstancesDetailViewController: UIViewController, StoreSubscriber {
         placeNameLabel.text = " \(myOfferInstance.business.name!)"
         placeAddressLabel.text = " \(business.address!)\n \(business.city!), \(business.state!) \(business.zipcode!)"
         offerDescriptionLabel.text = myOfferInstance.name!
+        
+        if !myOfferInstance.canBeRedeemed {
+            redeemButton.isUserInteractionEnabled = false
+        }
         
         // Dummy label just to test
         progressImageView.isHidden = true

@@ -1,5 +1,5 @@
 //
-//  CurrentOfferTableViewCell.swift
+//  CustomOfferTableViewCells.swift
 //  Punchcard-Swift-App
 //
 //  Created by Gabriele Pregadio on 2/6/17.
@@ -13,16 +13,12 @@ class CurrentOfferTableViewCell: MCSwipeTableViewCell {
 
     @IBOutlet weak var punchCountLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+
+}
+
+class MatchingOfferTableViewCell: MCSwipeTableViewCell {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    @IBOutlet weak var progressImageView: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
 }

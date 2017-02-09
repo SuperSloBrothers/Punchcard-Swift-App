@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import ReSwift
 
-class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
+class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, StoreSubscriber {
     
     // MARK: - IB outlets
     
@@ -50,7 +51,7 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Stored properties
     
     var place: Business!
-    
+    private var myActiveOfferInstances = [OfferInstance]()
     
     // MARK: - View lifecycle
     
@@ -65,8 +66,28 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
         formatMap()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        store.unsubscribe(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    // MARK: - StoreSubscriber
+    
+    func newState(state: RootState) {
+        if let myActiveOfferInstances = state.punchcardData.offerInstances?.value {
+            self.myActiveOfferInstances = myActiveOfferInstances
+            offersTableView.reloadData()
+        }
     }
     
     
@@ -111,22 +132,39 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.currentOffer.rawValue, for: indexPath) as! CurrentOfferTableViewCell
+        // TODO: - Find a better way to know if you're currently participating in one of this place's offers... use reswift duh
+        // TODO: - Why are some offer's names empty on here but not on the server?
         let offer = place.offerSet[indexPath.row]
-        
-        cell.backgroundColor = Colors.lightGrayBackground
-        
-        cell.punchCountLabel.attributedText = createAttributedString(forPunchTotal: offer.totalPunchesRequired)
-        cell.punchCountLabel.textAlignment = .center
-        cell.punchCountLabel.backgroundColor = Colors.gold
-        cell.punchCountLabel.numberOfLines = 0
-        
-        cell.descriptionLabel.text = offer.description!
-        cell.descriptionLabel.font = Fonts.offerDescription
-        cell.descriptionLabel.textColor = UIColor.white
-        cell.descriptionLabel.numberOfLines = 0
-        
-        return cell
+        if myActiveOfferInstances.contains(where: { $0.name == offer.name }) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cells.matchingOffer.rawValue, for: indexPath) as! MatchingOfferTableViewCell
+            
+            cell.accessoryType = .disclosureIndicator
+            cell.backgroundColor = Colors.lightGrayBackground
+            
+            cell.descriptionLabel.text = offer.name!
+            cell.descriptionLabel.font = Fonts.offerDescription
+            cell.descriptionLabel.textColor = UIColor.white
+            cell.descriptionLabel.numberOfLines = 0
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cells.currentOffer.rawValue, for: indexPath) as! CurrentOfferTableViewCell
+            
+            cell.isUserInteractionEnabled = false
+            cell.backgroundColor = Colors.lightGrayBackground
+            
+            cell.punchCountLabel.attributedText = createAttributedString(forPunchTotal: offer.totalPunchesRequired)
+            cell.punchCountLabel.textAlignment = .center
+            cell.punchCountLabel.backgroundColor = Colors.gold
+            cell.punchCountLabel.numberOfLines = 0
+            
+            cell.descriptionLabel.text = offer.name!
+            cell.descriptionLabel.font = Fonts.offerDescription
+            cell.descriptionLabel.textColor = UIColor.white
+            cell.descriptionLabel.numberOfLines = 0
+            
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -147,7 +185,7 @@ class PlaceDetailViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Supporting functionality
     
     enum Cells: String {
-        case currentOffer
+        case currentOffer, matchingOffer
     }
     
     struct Dimensions {
