@@ -19,6 +19,6 @@ struct Colors {
     static let darkGrayBackground = UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 1)
     static let cyan = UIColor(red: 0.22, green: 0.90, blue: 0.68, alpha: 1)
     static let gold = UIColor(red: 1, green: 0.64, blue: 0, alpha: 1)
-    static let buttonNormal = UIColor(red: 0, green: 0.48, blue: 1.0, alpha: 1.0)
+    static let buttonNormal = UIColor(red: 0.22, green: 0.90, blue: 0.68, alpha: 1)
     static let buttonSelected = UIColor(red: 0.78, green: 0.87, blue: 0.98, alpha: 1.0)
 }

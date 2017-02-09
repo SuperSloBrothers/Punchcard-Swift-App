@@ -11,17 +11,13 @@ import DZNEmptyDataSet
 
 extension AllPlacesTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     
-    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return UIColor.white
-    }
-    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if let _ = loadingError {
             return NSAttributedString(
                 string: Messages.errorLoading,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 27.0),
+                    NSForegroundColorAttributeName: UIColor.white
                 ]
             )
         }
@@ -29,8 +25,8 @@ extension AllPlacesTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSet
             return NSAttributedString(
                 string: Messages.loadingBusinesses,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 27.0),
+                    NSForegroundColorAttributeName: UIColor.white
                 ]
             )
         }
@@ -38,16 +34,16 @@ extension AllPlacesTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSet
             return NSAttributedString(
                 string: Messages.locationServicesDisabled,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 27.0),
+                    NSForegroundColorAttributeName: UIColor.white
                 ]
             )
         } else {
             return NSAttributedString(
                 string: Messages.noNearbyPlaces,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 27.0),
+                    NSForegroundColorAttributeName: UIColor.white
                 ]
             )
         }
@@ -58,8 +54,8 @@ extension AllPlacesTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSet
             return NSAttributedString(
                 string: error.localizedDescription,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0),
+                    NSForegroundColorAttributeName: UIColor.white
                 ]
             )
         }
@@ -70,16 +66,16 @@ extension AllPlacesTableViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSet
             return NSAttributedString(
                 string: Messages.locationServicesDisabledDetailed,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 12.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0),
+                    NSForegroundColorAttributeName: UIColor.white
                 ]
             )
         } else {
             return NSAttributedString(
                 string: Messages.noNearbyPlacesDetailed,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 12.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0),
+                    NSForegroundColorAttributeName: UIColor.white
                 ]
             )
         }

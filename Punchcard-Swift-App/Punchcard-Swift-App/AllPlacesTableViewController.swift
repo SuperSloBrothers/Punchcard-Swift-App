@@ -63,6 +63,8 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, CLLo
     // MARK: - Store subscriber
     
     func newState(state: RootState) {
+        guard authorizationStatus != .denied else { return }
+        
         if let businessResult = state.punchcardData.nearbyBusinesses {
             switch businessResult {
             case .Success(let businesses):

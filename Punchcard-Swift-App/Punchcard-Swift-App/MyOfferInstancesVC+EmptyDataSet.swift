@@ -16,8 +16,8 @@ extension MyOfferInstancesTableViewController: DZNEmptyDataSetSource, DZNEmptyDa
             return NSAttributedString(
                 string: Messages.errorLoading,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
-                    NSForegroundColorAttributeName: UIColor.lightGray
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 27.0),
+                    NSForegroundColorAttributeName: UIColor.white
                 ]
             )
         }
@@ -25,7 +25,7 @@ extension MyOfferInstancesTableViewController: DZNEmptyDataSetSource, DZNEmptyDa
             return NSAttributedString(
                 string: Messages.loadingOfferInstances,
                 attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 27.0),
                     NSForegroundColorAttributeName: UIColor.white
                 ]
             )
@@ -35,7 +35,7 @@ extension MyOfferInstancesTableViewController: DZNEmptyDataSetSource, DZNEmptyDa
             return NSAttributedString(
                 string: Messages.noActiveOfferInstancesMessage,
                 attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 27.0),
                     NSForegroundColorAttributeName: UIColor.white
                 ]
             )
@@ -44,7 +44,7 @@ extension MyOfferInstancesTableViewController: DZNEmptyDataSetSource, DZNEmptyDa
             return NSAttributedString(
                 string: Messages.noRedeemedOfferInstancesMessage,
                 attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 27.0),
                     NSForegroundColorAttributeName: UIColor.white
                 ]
             )
@@ -56,7 +56,7 @@ extension MyOfferInstancesTableViewController: DZNEmptyDataSetSource, DZNEmptyDa
             return NSAttributedString(
                 string: error.localizedDescription,
                 attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25.0),
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 15.0),
                     NSForegroundColorAttributeName: UIColor.lightGray
                 ]
             )
@@ -69,7 +69,7 @@ extension MyOfferInstancesTableViewController: DZNEmptyDataSetSource, DZNEmptyDa
             return NSAttributedString(
                 string: Messages.noActiveOfferInstancesDetailedMessage,
                 attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0),
                     NSForegroundColorAttributeName: UIColor.white
                 ]
             )
@@ -78,7 +78,7 @@ extension MyOfferInstancesTableViewController: DZNEmptyDataSetSource, DZNEmptyDa
             return NSAttributedString(
                 string: Messages.noRedeemedOfferInstancesDetailedMessage,
                 attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
+                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0),
                     NSForegroundColorAttributeName: UIColor.white
                 ]
             )
