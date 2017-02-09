@@ -10,7 +10,6 @@ import Foundation
 import ReSwift
 
 struct PunchcardDataState {
-//    var userId: Int?
     var offerInstances: Result<[OfferInstance]>?
     var nearbyBusinesses: Result<[Business]>?
 }

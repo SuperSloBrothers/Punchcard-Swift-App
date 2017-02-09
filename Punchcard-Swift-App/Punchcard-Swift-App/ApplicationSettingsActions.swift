@@ -31,12 +31,13 @@ func requestAPIToken (completion: @escaping (Bool) -> ()) {
             completion(false)
             return
         }
-        if let token = Mapper<Token>().map(JSONObject: JSON) {
+        if let token = Mapper<Token>().map(JSONObject: JSON)?.token {
             // we probably won't put the token in the state like this
             // only have it this way so the state isn't completely empty for now :)
-            store.dispatch(SetApiToken(token: token.token))
-            Defaults[.apiToken] = token.token
-            print("woohoo we got the token!\ntoken:\(token.token)")
+            store.dispatch(SetApiToken(token: token))
+            // TODO: - Should the following line be in the ApplicationSettingsReducer instead? Makes more sense maybe.
+            Defaults[.apiToken] = token
+            print("woohoo we got the token!\ntoken:\(token)")
             completion(true)
         } else {
             completion(false)

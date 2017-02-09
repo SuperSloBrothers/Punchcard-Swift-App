@@ -39,14 +39,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarAppearance.barTintColor = Colors.tabBarBackground
         tabBarAppearance.tintColor = Colors.cyan
         
-        if store.state.applicationSettings.userApiToken == nil {
+        if let token = store.state.applicationSettings.userApiToken {
+            BusinessRouter.oAuthToken = token
+            OfferInstanceRouter.oAuthToken = token
+            PunchRouter.oAuthToken = token
+        } else {
             // Send them to login screen
             let storyboard = UIStoryboard(name: "Login", bundle: Bundle.main)
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
-        } else {
-            // dispatch actions that will get data from database
         }
         
         return true

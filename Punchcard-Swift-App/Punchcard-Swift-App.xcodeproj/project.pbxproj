@@ -14,11 +14,18 @@
 		2A39B9E91E455FA7001BFA91 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39B9E81E455FA7001BFA91 /* Token.swift */; };
 		6028527F66216771F656A9CC /* Pods_Punchcard_Swift_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36548DB781CEBD245ECF98EA /* Pods_Punchcard_Swift_App.framework */; };
 		CB0A13621E4BB06600F3B204 /* AllPlacesVC+EmptyDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A13611E4BB06600F3B204 /* AllPlacesVC+EmptyDataSet.swift */; };
-		CB0A13641E4BB12900F3B204 /* AllPlacesVC+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A13631E4BB12900F3B204 /* AllPlacesVC+Tests.swift */; };
+		CB0A13661E4BBE7800F3B204 /* MyOfferInstancesVC+EmptyDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A13651E4BBE7800F3B204 /* MyOfferInstancesVC+EmptyDataSet.swift */; };
+		CB0A13681E4BBF9F00F3B204 /* OfferInstanceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A13671E4BBF9F00F3B204 /* OfferInstanceRouter.swift */; };
+		CB0A136A1E4BC2C500F3B204 /* OfferInstanceActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A13691E4BC2C500F3B204 /* OfferInstanceActions.swift */; };
 		CB13E5981E4120F30020CB32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13E5971E4120F30020CB32 /* AppDelegate.swift */; };
 		CB13E59D1E4120F30020CB32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59B1E4120F30020CB32 /* Main.storyboard */; };
 		CB13E59F1E4120F30020CB32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB13E59E1E4120F30020CB32 /* Assets.xcassets */; };
 		CB13E5A21E4120F30020CB32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB13E5A01E4120F30020CB32 /* LaunchScreen.storyboard */; };
+		CB2936B31E4BE75D00DEBEA1 /* OffersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2936B21E4BE75D00DEBEA1 /* OffersRouter.swift */; };
+		CB2936B51E4BE92100DEBEA1 /* OfferActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2936B41E4BE92100DEBEA1 /* OfferActions.swift */; };
+		CB2A57951E4BCB4B003871B1 /* PunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2A57941E4BCB4B003871B1 /* PunchRouter.swift */; };
+		CB2A57971E4BCB90003871B1 /* PunchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2A57961E4BCB90003871B1 /* PunchActions.swift */; };
+		CB2A57991E4BCBD8003871B1 /* Punch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2A57981E4BCBD8003871B1 /* Punch.swift */; };
 		CB30C5441E424FB400F179A3 /* PunchcardDataActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C5431E424FB400F179A3 /* PunchcardDataActions.swift */; };
 		CB30C5471E42500F00F179A3 /* RootStateReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C5461E42500F00F179A3 /* RootStateReducer.swift */; };
 		CB30C5491E4250F600F179A3 /* ApplicationSettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C5481E4250F600F179A3 /* ApplicationSettingsReducer.swift */; };
@@ -30,6 +37,7 @@
 		CB5B85AB1E4BA8E5007041A5 /* BusinessActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5B85AA1E4BA8E5007041A5 /* BusinessActions.swift */; };
 		CB5B85B01E4BAC24007041A5 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5B85AF1E4BAC24007041A5 /* APIError.swift */; };
 		CB60725F1E43F724004CC418 /* PunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60725E1E43F724004CC418 /* PunchViewController.swift */; };
+		CB7AA0FC1E4BEA40001A26B0 /* StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7AA0FB1E4BEA40001A26B0 /* StatusCode.swift */; };
 		CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */; };
 		CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */; };
 		CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */; };
@@ -52,13 +60,20 @@
 		828876845A0FC11993308CA9 /* Pods-Punchcard-Swift-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punchcard-Swift-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Punchcard-Swift-App/Pods-Punchcard-Swift-App.debug.xcconfig"; sourceTree = "<group>"; };
 		86284E8CC50CF27D732EE788 /* Pods-Punchcard-Swift-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punchcard-Swift-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Punchcard-Swift-App/Pods-Punchcard-Swift-App.release.xcconfig"; sourceTree = "<group>"; };
 		CB0A13611E4BB06600F3B204 /* AllPlacesVC+EmptyDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AllPlacesVC+EmptyDataSet.swift"; sourceTree = "<group>"; };
-		CB0A13631E4BB12900F3B204 /* AllPlacesVC+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AllPlacesVC+Tests.swift"; sourceTree = "<group>"; };
+		CB0A13651E4BBE7800F3B204 /* MyOfferInstancesVC+EmptyDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyOfferInstancesVC+EmptyDataSet.swift"; sourceTree = "<group>"; };
+		CB0A13671E4BBF9F00F3B204 /* OfferInstanceRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferInstanceRouter.swift; sourceTree = "<group>"; };
+		CB0A13691E4BC2C500F3B204 /* OfferInstanceActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferInstanceActions.swift; sourceTree = "<group>"; };
 		CB13E5941E4120F30020CB32 /* Punchcard-Swift-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Punchcard-Swift-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB13E5971E4120F30020CB32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB13E59C1E4120F30020CB32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB13E59E1E4120F30020CB32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB13E5A11E4120F30020CB32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB13E5A31E4120F30020CB32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB2936B21E4BE75D00DEBEA1 /* OffersRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersRouter.swift; sourceTree = "<group>"; };
+		CB2936B41E4BE92100DEBEA1 /* OfferActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferActions.swift; sourceTree = "<group>"; };
+		CB2A57941E4BCB4B003871B1 /* PunchRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchRouter.swift; sourceTree = "<group>"; };
+		CB2A57961E4BCB90003871B1 /* PunchActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchActions.swift; sourceTree = "<group>"; };
+		CB2A57981E4BCBD8003871B1 /* Punch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Punch.swift; sourceTree = "<group>"; };
 		CB30C5431E424FB400F179A3 /* PunchcardDataActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataActions.swift; sourceTree = "<group>"; };
 		CB30C5461E42500F00F179A3 /* RootStateReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootStateReducer.swift; sourceTree = "<group>"; };
 		CB30C5481E4250F600F179A3 /* ApplicationSettingsReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsReducer.swift; sourceTree = "<group>"; };
@@ -70,6 +85,7 @@
 		CB5B85AA1E4BA8E5007041A5 /* BusinessActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessActions.swift; sourceTree = "<group>"; };
 		CB5B85AF1E4BAC24007041A5 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		CB60725E1E43F724004CC418 /* PunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchViewController.swift; sourceTree = "<group>"; };
+		CB7AA0FB1E4BEA40001A26B0 /* StatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCode.swift; sourceTree = "<group>"; };
 		CBBD4E1C1E4168A800E1DEB4 /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
 		CBBD4E1F1E4168E300E1DEB4 /* ApplicationSettingsState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettingsState.swift; sourceTree = "<group>"; };
 		CBBD4E211E41690500E1DEB4 /* PunchcardDataState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardDataState.swift; sourceTree = "<group>"; };
@@ -115,6 +131,9 @@
 			isa = PBXGroup;
 			children = (
 				CB5B85A71E4BA25A007041A5 /* BusinessRouter.swift */,
+				CB0A13671E4BBF9F00F3B204 /* OfferInstanceRouter.swift */,
+				CB2A57941E4BCB4B003871B1 /* PunchRouter.swift */,
+				CB2936B21E4BE75D00DEBEA1 /* OffersRouter.swift */,
 			);
 			name = Routers;
 			sourceTree = "<group>";
@@ -224,16 +243,11 @@
 			children = (
 				CB30C5431E424FB400F179A3 /* PunchcardDataActions.swift */,
 				CB5B85AA1E4BA8E5007041A5 /* BusinessActions.swift */,
+				CB0A13691E4BC2C500F3B204 /* OfferInstanceActions.swift */,
+				CB2936B41E4BE92100DEBEA1 /* OfferActions.swift */,
+				CB2A57961E4BCB90003871B1 /* PunchActions.swift */,
 			);
 			name = "PunchcardData Actions";
-			sourceTree = "<group>";
-		};
-		CB5B85AE1E4BA99F007041A5 /* Business */ = {
-			isa = PBXGroup;
-			children = (
-				CBBD4E231E4169BE00E1DEB4 /* Business.swift */,
-			);
-			name = Business;
 			sourceTree = "<group>";
 		};
 		CB6072601E43F72F004CC418 /* Punch Tab */ = {
@@ -257,13 +271,15 @@
 		CBBD4E251E4169C800E1DEB4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CB5B85AE1E4BA99F007041A5 /* Business */,
 				CB5B85AF1E4BAC24007041A5 /* APIError.swift */,
-				CBD39AAE1E43F183005021DD /* Constants.swift */,
+				CB7AA0FB1E4BEA40001A26B0 /* StatusCode.swift */,
+				CBBD4E231E4169BE00E1DEB4 /* Business.swift */,
 				CB30C54E1E42524D00F179A3 /* Offer.swift */,
 				CBBD4E261E416A0300E1DEB4 /* OfferInstance.swift */,
-				2A39B9E41E454D84001BFA91 /* Result.swift */,
+				CB2A57981E4BCBD8003871B1 /* Punch.swift */,
 				2A39B9E81E455FA7001BFA91 /* Token.swift */,
+				2A39B9E41E454D84001BFA91 /* Result.swift */,
+				CBD39AAE1E43F183005021DD /* Constants.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -273,7 +289,6 @@
 			children = (
 				CBD39AA91E43EB54005021DD /* AllPlacesTableViewController.swift */,
 				CB0A13611E4BB06600F3B204 /* AllPlacesVC+EmptyDataSet.swift */,
-				CB0A13631E4BB12900F3B204 /* AllPlacesVC+Tests.swift */,
 				CBD39AAC1E43EFF5005021DD /* PlaceDetailViewController.swift */,
 				CB50041D1E493B62002536B3 /* CurrentOfferTableViewCell.swift */,
 			);
@@ -284,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				CBD39AB01E43F3DE005021DD /* MyOfferInstancesTableViewController.swift */,
+				CB0A13651E4BBE7800F3B204 /* MyOfferInstancesVC+EmptyDataSet.swift */,
 				CBD39AB31E43F5A0005021DD /* MyOfferInstancesDetailViewController.swift */,
 			);
 			name = "My Offer Instances Tab";
@@ -415,11 +431,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A39B9E71E455708001BFA91 /* LoginViewController.swift in Sources */,
+				CB0A13661E4BBE7800F3B204 /* MyOfferInstancesVC+EmptyDataSet.swift in Sources */,
+				CB7AA0FC1E4BEA40001A26B0 /* StatusCode.swift in Sources */,
 				CB30C5441E424FB400F179A3 /* PunchcardDataActions.swift in Sources */,
 				CBD39AAA1E43EB54005021DD /* AllPlacesTableViewController.swift in Sources */,
 				CB30C54F1E42524D00F179A3 /* Offer.swift in Sources */,
+				CB0A136A1E4BC2C500F3B204 /* OfferInstanceActions.swift in Sources */,
 				CBD39AB11E43F3DE005021DD /* MyOfferInstancesTableViewController.swift in Sources */,
+				CB0A13681E4BBF9F00F3B204 /* OfferInstanceRouter.swift in Sources */,
 				CB30C54D1E42518D00F179A3 /* ApplicationSettingsActions.swift in Sources */,
+				CB2936B31E4BE75D00DEBEA1 /* OffersRouter.swift in Sources */,
+				CB2A57991E4BCBD8003871B1 /* Punch.swift in Sources */,
 				CBBD4E271E416A0300E1DEB4 /* OfferInstance.swift in Sources */,
 				2A39B9E91E455FA7001BFA91 /* Token.swift in Sources */,
 				CB5B85B01E4BAC24007041A5 /* APIError.swift in Sources */,
@@ -429,6 +451,7 @@
 				CB30C5471E42500F00F179A3 /* RootStateReducer.swift in Sources */,
 				CBBD4E221E41690500E1DEB4 /* PunchcardDataState.swift in Sources */,
 				CBBD4E1D1E4168A800E1DEB4 /* RootState.swift in Sources */,
+				CB2936B51E4BE92100DEBEA1 /* OfferActions.swift in Sources */,
 				CB0A13621E4BB06600F3B204 /* AllPlacesVC+EmptyDataSet.swift in Sources */,
 				2A39B9E11E453521001BFA91 /* Defaults.swift in Sources */,
 				CB30C54B1E42513700F179A3 /* PunchcardDataReducer.swift in Sources */,
@@ -439,9 +462,10 @@
 				CBD39AB41E43F5A0005021DD /* MyOfferInstancesDetailViewController.swift in Sources */,
 				CB60725F1E43F724004CC418 /* PunchViewController.swift in Sources */,
 				CB13E5981E4120F30020CB32 /* AppDelegate.swift in Sources */,
+				CB2A57971E4BCB90003871B1 /* PunchActions.swift in Sources */,
 				CB5B85AB1E4BA8E5007041A5 /* BusinessActions.swift in Sources */,
-				CB0A13641E4BB12900F3B204 /* AllPlacesVC+Tests.swift in Sources */,
 				CBBD4E201E4168E300E1DEB4 /* ApplicationSettingsState.swift in Sources */,
+				CB2A57951E4BCB4B003871B1 /* PunchRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

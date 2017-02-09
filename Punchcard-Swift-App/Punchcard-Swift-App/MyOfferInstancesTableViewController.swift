@@ -11,7 +11,7 @@ import ReSwift
 import MCSwipeTableViewCell
 import DZNEmptyDataSet
 
-class MyOfferInstancesTableViewController: UITableViewController, StoreSubscriber, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class MyOfferInstancesTableViewController: UITableViewController, StoreSubscriber {
     
     // MARK: - IB outlets
     
@@ -25,14 +25,12 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
     var myOffersDataSource = [OfferInstance]()
     var selectedSegmentIndex = 0 {
         didSet {
-            if selectedSegmentIndex == 0 {
-                myOffersDataSource = myActiveOfferInstances
-            } else {
-                myOffersDataSource = myRedeemedOfferInstances
-            }
+            myOffersDataSource = (selectedSegmentIndex == 0) ? myActiveOfferInstances : myRedeemedOfferInstances
             tableView.reloadData()
         }
     }
+    var offerInstancesAreLoading = false
+    var loadingError: Error?
     
     
     // MARK: - View lifecycle
@@ -51,23 +49,6 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
         
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         
-        // Create some test offer instances - comment out this block to test empty data set.
-        var anOfferInstance = OfferInstance()
-        var aBusiness = Business()
-        aBusiness.name = "Mike's Can"
-        aBusiness.address = "123 Poop St."
-        aBusiness.city = "Poop Land"
-        aBusiness.state = "TX"
-        aBusiness.zipcode = "80085"
-        anOfferInstance.business = aBusiness
-        anOfferInstance.hasBeenRedeemed = false
-        anOfferInstance.totalPunches = 3
-        anOfferInstance.totalPunchesRequired = 5
-        myActiveOfferInstances = [anOfferInstance]
-        
-        myOffersDataSource = myActiveOfferInstances
-        tableView.reloadData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,11 +56,16 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
         store.subscribe(self)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        store.dispatch(getOfferInstances())
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         store.unsubscribe(self)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -88,7 +74,25 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
     // MARK: - Store subscriber
     
     func newState(state: RootState) {
-        
+        if let offerInstancesResult = state.punchcardData.offerInstances {
+            switch offerInstancesResult {
+            case .Success(let offerInstances):
+                offerInstancesAreLoading = false
+                loadingError = nil
+                // TODO: - Following two lines should be done via parameters in the request (I think).
+                myActiveOfferInstances = offerInstances.filter { $0.canBeRedeemed }
+                myRedeemedOfferInstances = offerInstances.filter { !$0.canBeRedeemed }
+                tableView.reloadData()
+            case .Failure(let error):
+                offerInstancesAreLoading = false
+                loadingError = error
+                tableView.reloadEmptyDataSet()
+            case .Loading():
+                offerInstancesAreLoading = true
+                loadingError = nil
+                tableView.reloadEmptyDataSet()
+            }
+        }
     }
     
     
@@ -98,7 +102,7 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
         selectedSegmentIndex = sender.selectedSegmentIndex
     }
     
-
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,53 +132,6 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
     }
     
     
-    // MARK: - Empty data set data source
-    
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if selectedSegmentIndex == 0 {
-            // Active
-            return NSAttributedString(
-                string: Constants.noActiveOfferInstancesMessage,
-                attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
-                    NSForegroundColorAttributeName: UIColor.white
-                ]
-            )
-        } else {
-            // Redeemed
-            return NSAttributedString(
-                string: Constants.noRedeemedOfferInstancesMessage,
-                attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30.0),
-                    NSForegroundColorAttributeName: UIColor.white
-                ]
-            )
-        }
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if selectedSegmentIndex == 0 {
-            // Active
-            return NSAttributedString(
-                string: Constants.noActiveOfferInstancesDetailedMessage,
-                attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
-                    NSForegroundColorAttributeName: UIColor.white
-                ]
-            )
-        } else {
-            // Redeemed
-            return NSAttributedString(
-                string: Constants.noRedeemedOfferInstancesDetailedMessage,
-                attributes: [
-                    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0),
-                    NSForegroundColorAttributeName: UIColor.white
-                ]
-            )
-        }
-    }
-    
-    
     // MARK: - Supporting functionality
     
     enum Cells: String {
@@ -183,6 +140,11 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
     
     struct Constants {
         static let rowHeigh: CGFloat = 60
+    }
+    
+    struct Messages {
+        static let errorLoading = "Loading Error"
+        static let loadingOfferInstances = "Loading your offer instances..."
         static let noActiveOfferInstancesMessage = "No active offers."
         static let noActiveOfferInstancesDetailedMessage = "Go use this app you asshole."
         static let noRedeemedOfferInstancesMessage = "No redeemed offers."

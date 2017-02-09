@@ -93,8 +93,8 @@ class PunchViewController: UIViewController, StoreSubscriber {
         progressLabel.text = "\(testCurrentTotal)/\(testRequiredTotal)"
         progressView.setProgress(testProgress, animated: false)
         
-        // would be cool to add a glowing animation to the label while it's waiting for your tap
-        tapToPunchLabel.text = "Tap to Punch!"
+        // TODO: - Add a glowing animation to the label while it's waiting for your tap maybe? Lots of potential for all that space to draw in.
+        tapToPunchLabel.text = "Tap to punch!"
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedToPunch))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapToPunchLabel.addGestureRecognizer(tapGestureRecognizer)
@@ -123,7 +123,24 @@ class PunchViewController: UIViewController, StoreSubscriber {
     // MARK: - Other methods
     
     @objc private func tappedToPunch(_ sender: UITapGestureRecognizer) {
-        // some cool animation
+        // TODO: - Add a cool animation
+        
+//        store.dispatch(postPunch(
+//            parameters: [
+//                "key" : "" as AnyObject,
+//                "punch_method": "api" as AnyObject
+//            ]
+//        ))
+        
+//        store.dispatch(postOffer(parameters:
+//            [
+//                "name": "Test Offer" as AnyObject,
+//                "description": "This is a cool description of this offer boi" as AnyObject,
+//                "business": "what the fuck do i put here" as AnyObject,
+//                "punch_total_required": 10 as AnyObject
+//            ]
+//        ))
+        
         testCurrentTotal += 1
     }
     
@@ -134,7 +151,7 @@ class PunchViewController: UIViewController, StoreSubscriber {
         static let tapToPunch = UIFont.boldSystemFont(ofSize: 30.0)
         static let qrCodeResult = UIFont.systemFont(ofSize: 17.0)
         static let placeName = UIFont.italicSystemFont(ofSize: 17.0)
-        static let progress = UIFont.boldSystemFont(ofSize: 17.0) // anything not comic sans
+        static let progress = UIFont.boldSystemFont(ofSize: 17.0)
         static let offerDescription = UIFont.systemFont(ofSize: 15.0)
     }
     

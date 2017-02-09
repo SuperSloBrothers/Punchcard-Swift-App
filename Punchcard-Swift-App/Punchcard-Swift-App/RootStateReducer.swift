@@ -21,11 +21,11 @@ struct RootStateReducer: Reducer {
                 punchcardData: punchcardDataReducer(action: action, state: nil)
             )
         default:
-                return RootState(
-                    applicationSettings: applicationSettingsReducer(action: action, state: state?.applicationSettings),
-                    punchcardData: punchcardDataReducer(action: action, state: state?.punchcardData)
-                )
-    
+            return RootState(
+                applicationSettings: applicationSettingsReducer(action: action, state: state?.applicationSettings),
+                punchcardData: punchcardDataReducer(action: action, state: state?.punchcardData)
+            )
+            
         }
     }
 }

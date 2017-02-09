@@ -67,6 +67,7 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, CLLo
             switch businessResult {
             case .Success(let businesses):
                 businessesAreLoading = false
+                loadingError = nil
                 self.businesses = businesses
                 tableView.reloadData()
             case .Failure(let error):
@@ -75,6 +76,7 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, CLLo
                 tableView.reloadEmptyDataSet()
             case .Loading():
                 businessesAreLoading = true
+                loadingError = nil
                 tableView.reloadEmptyDataSet()
             }
         }

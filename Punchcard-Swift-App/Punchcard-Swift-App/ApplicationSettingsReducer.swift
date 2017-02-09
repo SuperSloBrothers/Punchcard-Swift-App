@@ -19,12 +19,14 @@ func createInitialApplicationSettingsState() -> ApplicationSettingsState {
 }
 
 func applicationSettingsReducer(action: Action, state: ApplicationSettingsState?) -> ApplicationSettingsState {
-    // If no state has been provided, create default state
     var state = state ?? createInitialApplicationSettingsState()
     
     switch action {
     case let action as SetApiToken:
         state.userApiToken = action.token
+        BusinessRouter.oAuthToken = action.token
+        OfferInstanceRouter.oAuthToken = action.token
+        PunchRouter.oAuthToken = action.token
     default:
         break
     }

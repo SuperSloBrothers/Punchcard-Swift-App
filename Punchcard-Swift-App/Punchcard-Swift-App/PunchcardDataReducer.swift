@@ -22,6 +22,10 @@ func punchcardDataReducer(action: Action, state: PunchcardDataState?) -> Punchca
     switch action {
     case let action as SetBusinesses:
         state.nearbyBusinesses = action.businesses
+    case let action as SetOfferInstances:
+        state.offerInstances = action.offerInstances
+    case is PostPunch:
+        print("reducer dunno what to do with this punch")
     default:
         break
     }
