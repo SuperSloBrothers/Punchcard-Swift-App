@@ -123,6 +123,8 @@ class AllPlacesTableViewController: UITableViewController, StoreSubscriber, CLLo
             store.dispatch(getBusinesses())
         case .denied:
             businesses.removeAll()
+            // Scroll to top, else the empty data set message will not be visible.
+            tableView.setContentOffset(CGPoint.zero, animated: false)
             tableView.reloadData()
         default:
             break

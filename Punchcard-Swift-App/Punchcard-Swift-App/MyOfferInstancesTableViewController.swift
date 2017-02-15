@@ -148,9 +148,9 @@ class MyOfferInstancesTableViewController: UITableViewController, StoreSubscribe
         static let errorLoading = "Loading Error"
         static let loadingOfferInstances = "Loading your offer instances..."
         static let noActiveOfferInstancesMessage = "No active offers."
-        static let noActiveOfferInstancesDetailedMessage = "Go use this app you asshole."
+        static let noActiveOfferInstancesDetailedMessage = "Go use this app."
         static let noRedeemedOfferInstancesMessage = "No redeemed offers."
-        static let noRedeemedOfferInstancesDetailedMessage = "Go redeem some shit."
+        static let noRedeemedOfferInstancesDetailedMessage = "Go redeem something."
     }
     
 }
